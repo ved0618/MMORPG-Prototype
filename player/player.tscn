@@ -161,7 +161,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ynsuh")
 }],
 "loop": 1,
-"name": &"idle",
+"name": &"idle_down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -245,5 +245,4 @@ shape = SubResource("CircleShape2D_1hbya")
 position = Vector2(298, 113)
 scale = Vector2(2.140625, 1.984375)
 sprite_frames = SubResource("SpriteFrames_1hbya")
-animation = &"up_walk"
-frame_progress = 0.11037952
+animation = &"idle_down"
