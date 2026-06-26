@@ -14,8 +14,9 @@ func _process(delta: float) -> void:
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	
-	velocity = direction * move_speed
-	UpdateAnimation()
+	velocity = direction.normalized() * move_speed
+	if SetDirection() || SetState() == true:
+		UpdateAnimation()
 	
 	pass
 	
@@ -24,22 +25,46 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func SetDirection() -> bool:
+	if direction == Vector2.ZERO:
+		return false
+
+	var new_dir := cardinal_direction
+
+	if abs(direction.x) > abs(direction.y):
+		new_dir = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
+	else:
+		new_dir = Vector2.DOWN if direction.y > 0 else Vector2.UP
+
+	if new_dir == cardinal_direction:
+		return false
+
+	cardinal_direction = new_dir
+	return true
 	
 	return true
 	
 func SetState() -> bool:
-	
+	var new_state: String = "idle" if direction == Vector2.ZERO else "walk"
+	if new_state == state:
+		return false
+	state = new_state
 	return true
 
 func UpdateAnimation() -> void:
-	animated_sprite.play(state + "_" + AnimeDirection())
-	pass	
+	if cardinal_direction == Vector2.LEFT:
+		animated_sprite.flip_h = true
+		animated_sprite.play(state + "_side")
+	elif cardinal_direction == Vector2.RIGHT:
+		animated_sprite.flip_h = false
+		animated_sprite.play(state + "_side")
+	else:
+		animated_sprite.flip_h = false
+		animated_sprite.play(state + "_" + AnimeDirection())
 	
-func AnimeDirection() -> String:
+func AnimeDirection() -> String:	
 	if cardinal_direction == Vector2.DOWN:
 		return "down"
-	elif cardinal_direction == Vector2.UP:
-		return "up"
 	else:
-		return "side"
+		return "up"
+	
 	
