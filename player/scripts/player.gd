@@ -6,18 +6,15 @@ var direction: Vector2 = Vector2.ZERO
 var move_speed : float = 100.0
 var state : String = "idle"
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var state_machine : PlayerStateMachine = $StateMachine
 
 func _ready() -> void:
-	pass
+	state_machine.Initialize(self)
 	
 func _process(delta: float) -> void:
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	
-	velocity = direction.normalized() * move_speed
-	if SetDirection() || SetState() == true:
-		UpdateAnimation()
-	
+
 	pass
 	
 func _physics_process(delta: float) -> void:
@@ -41,16 +38,8 @@ func SetDirection() -> bool:
 	cardinal_direction = new_dir
 	return true
 	
-	return true
-	
-func SetState() -> bool:
-	var new_state: String = "idle" if direction == Vector2.ZERO else "walk"
-	if new_state == state:
-		return false
-	state = new_state
-	return true
 
-func UpdateAnimation() -> void:
+func UpdateAnimation( state: String) -> void:
 	if cardinal_direction == Vector2.LEFT:
 		animated_sprite.flip_h = true
 		animated_sprite.play(state + "_side")
@@ -64,7 +53,9 @@ func UpdateAnimation() -> void:
 func AnimeDirection() -> String:	
 	if cardinal_direction == Vector2.DOWN:
 		return "down"
-	else:
+	elif cardinal_direction == Vector2.UP:
 		return "up"
+	else:
+		return "side"
 	
 	
