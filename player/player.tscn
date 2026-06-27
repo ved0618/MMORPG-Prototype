@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://dm4xxatimt46d"]
 
-[ext_resource type="Script" uid="uid://c8at1lke4rbjd" path="res://player/player.gd" id="1_g1dw6"]
+[ext_resource type="Script" uid="uid://c8at1lke4rbjd" path="res://player/scripts/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://chkniucf5858f" path="res://sprite/Carry_Idle_Down-Sheet.png" id="2_yw30f"]
 [ext_resource type="Texture2D" uid="uid://cbq5u6orqim6i" path="res://sprite/Carry_Idle_Side-Sheet.png" id="3_boad6"]
 [ext_resource type="Texture2D" uid="uid://cafoum8febpcq" path="res://sprite/Carry_Walk_Down-Sheet.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://bswhaq1voxq0y" path="res://sprite/Carry_Walk_Side-Sheet.png" id="4_boad6"]
 [ext_resource type="Texture2D" uid="uid://biqkvvf8di5ln" path="res://sprite/Carry_Idle_Up-Sheet.png" id="4_rgyib"]
 [ext_resource type="Texture2D" uid="uid://dm275d16htqvy" path="res://sprite/Carry_Walk_Up-Sheet.png" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://s3oiingxwe7h" path="res://player/scripts/player_state_machine.gd" id="8_rgyib"]
+[ext_resource type="Script" uid="uid://bga8c13hhoy5w" path="res://player/scripts/state_idle.gd" id="9_hg6s5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hbya"]
 radius = 23.345236
@@ -266,3 +268,11 @@ position = Vector2(298, 113)
 scale = Vector2(2.140625, 1.984375)
 sprite_frames = SubResource("SpriteFrames_1hbya")
 animation = &"walk_side"
+
+[node name="StateMachine" type="Node" parent="." unique_id=1854375830]
+script = ExtResource("8_rgyib")
+
+[node name="idle" type="Node" parent="StateMachine" unique_id=1098272529]
+script = ExtResource("9_hg6s5")
+
+[node name="walk" type="Node" parent="StateMachine" unique_id=241292705]
