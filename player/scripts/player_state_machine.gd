@@ -28,10 +28,10 @@ func Initialize(_player: Player) -> void:
 
 	for c in get_children():
 		if c is State:
+			c.player = _player
 			states.append(c)
 
 	if states.size() > 0:
-		states[0].player = _player
 		ChangeState(states[0])
 		process_mode = Node.PROCESS_MODE_INHERIT
 
