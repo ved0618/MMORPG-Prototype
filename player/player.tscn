@@ -11,8 +11,9 @@
 [ext_resource type="Script" uid="uid://bga8c13hhoy5w" path="res://player/scripts/state_idle.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://c6vpoo7h0a5i2" path="res://player/scripts/state_walk.gd" id="10_8t03j"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1hbya"]
-radius = 23.345236
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hbya"]
+radius = 13.0
+height = 44.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_is3ju"]
 atlas = ExtResource("2_yw30f")
@@ -258,14 +259,17 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=424423397]
+z_index = 1
+collision_mask = 16
 script = ExtResource("1_g1dw6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1308979423]
-position = Vector2(297, 146)
-shape = SubResource("CircleShape2D_1hbya")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=103377598]
+z_index = 1
+position = Vector2(2, -22)
+shape = SubResource("CapsuleShape2D_1hbya")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=427603029]
-position = Vector2(298, 113)
+position = Vector2(3, -33)
 scale = Vector2(2.140625, 1.984375)
 sprite_frames = SubResource("SpriteFrames_1hbya")
 animation = &"walk_side"
@@ -278,3 +282,5 @@ script = ExtResource("9_hg6s5")
 
 [node name="walk" type="Node" parent="StateMachine" unique_id=241292705]
 script = ExtResource("10_8t03j")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1559724859]

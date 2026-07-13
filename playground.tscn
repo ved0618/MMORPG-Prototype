@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://ctrychp4ux8su"]
 
 [ext_resource type="PackedScene" uid="uid://dm4xxatimt46d" path="res://player/player.tscn" id="1_rupst"]
+[ext_resource type="PackedScene" uid="uid://chh83s3ytjw51" path="res://tile_maps/map01.tscn" id="1_wt17y"]
 
 [node name="playground" type="Node2D" unique_id=80683012]
 
+[node name="Map01" parent="." unique_id=1246819638 instance=ExtResource("1_wt17y")]
+
 [node name="Player" parent="." unique_id=424423397 instance=ExtResource("1_rupst")]
-position = Vector2(335, 208)
+position = Vector2(517, 288)
