@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MMORPG_Prototype"
-run/main_scene="res://playground.tscn"
+run/main_scene="uid://ll5cyolptl14"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

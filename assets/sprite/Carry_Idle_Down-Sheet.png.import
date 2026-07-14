@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbq5u6orqim6i"
-path="res://.godot/imported/Carry_Idle_Side-Sheet.png-22865beb5cd478f6a3158ceddcd202f1.ctex"
+uid="uid://chkniucf5858f"
+path="res://.godot/imported/Carry_Idle_Down-Sheet.png-c48791e85553fd58a9c50924fba5aae2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/Carry_Idle_Side-Sheet.png"
-dest_files=["res://.godot/imported/Carry_Idle_Side-Sheet.png-22865beb5cd478f6a3158ceddcd202f1.ctex"]
+source_file="res://assets/sprite/Carry_Idle_Down-Sheet.png"
+dest_files=["res://.godot/imported/Carry_Idle_Down-Sheet.png-c48791e85553fd58a9c50924fba5aae2.ctex"]
 
 [params]
 
