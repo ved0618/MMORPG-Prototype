@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biqkvvf8di5ln"
-path="res://.godot/imported/Carry_Idle_Up-Sheet.png-81fd6a5927fd0ff1ad13ab31aa26d1b8.ctex"
+uid="uid://bswhaq1voxq0y"
+path="res://.godot/imported/Carry_Walk_Side-Sheet.png-a75e64ce154a519631e6406d16d4a77d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/Carry_Idle_Up-Sheet.png"
-dest_files=["res://.godot/imported/Carry_Idle_Up-Sheet.png-81fd6a5927fd0ff1ad13ab31aa26d1b8.ctex"]
+source_file="res://assets/sprite/Carry_Walk_Side-Sheet.png"
+dest_files=["res://.godot/imported/Carry_Walk_Side-Sheet.png-a75e64ce154a519631e6406d16d4a77d.ctex"]
 
 [params]
 

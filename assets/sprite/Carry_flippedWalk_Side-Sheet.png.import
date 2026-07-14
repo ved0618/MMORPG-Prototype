@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bswhaq1voxq0y"
-path="res://.godot/imported/Carry_Walk_Side-Sheet.png-332f8163d915402cad7d59c47de5ac7f.ctex"
+uid="uid://cb300eaudjbk6"
+path="res://.godot/imported/Carry_flippedWalk_Side-Sheet.png-78442ff27bdbb9d951b34aeb56492d85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/Carry_Walk_Side-Sheet.png"
-dest_files=["res://.godot/imported/Carry_Walk_Side-Sheet.png-332f8163d915402cad7d59c47de5ac7f.ctex"]
+source_file="res://assets/sprite/Carry_flippedWalk_Side-Sheet.png"
+dest_files=["res://.godot/imported/Carry_flippedWalk_Side-Sheet.png-78442ff27bdbb9d951b34aeb56492d85.ctex"]
 
 [params]
 

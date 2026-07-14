@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://citk7p3j36dgc"
-path="res://.godot/imported/WaterTiles-6frames.png-9f0a33a520809326d96703584bd3233a.ctex"
+uid="uid://biqkvvf8di5ln"
+path="res://.godot/imported/Carry_Idle_Up-Sheet.png-ef25f83f106ea5926371fac6085c231d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile_maps/sprites/WaterTiles-6frames.png"
-dest_files=["res://.godot/imported/WaterTiles-6frames.png-9f0a33a520809326d96703584bd3233a.ctex"]
+source_file="res://assets/sprite/Carry_Idle_Up-Sheet.png"
+dest_files=["res://.godot/imported/Carry_Idle_Up-Sheet.png-ef25f83f106ea5926371fac6085c231d.ctex"]
 
 [params]
 
