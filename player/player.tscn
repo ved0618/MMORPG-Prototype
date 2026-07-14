@@ -269,8 +269,8 @@ position = Vector2(2, -22)
 shape = SubResource("CapsuleShape2D_1hbya")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=427603029]
-position = Vector2(3, -33)
-scale = Vector2(2.140625, 1.984375)
+position = Vector2(3, -20.249998)
+scale = Vector2(2.140625, 1.5859375)
 sprite_frames = SubResource("SpriteFrames_1hbya")
 animation = &"walk_side"
 
