@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cuk1krvhdv7pq"]
 
+[ext_resource type="Script" uid="uid://4yqkvcfn81y7" path="res://scenes/menus/main_menu.gd" id="1_2o76q"]
 [ext_resource type="Texture2D" uid="uid://c87uguwyuuyho" path="res://assets/images/BG.jpg" id="1_xqga4"]
+[ext_resource type="FontFile" uid="uid://c6k0kyakbtqru" path="res://assets/fonts/FortAvenue-nAWrg.ttf" id="2_ovrgc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5oxl"]
 texture = ExtResource("1_xqga4")
@@ -12,6 +14,8 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k45bu"]
+
 [node name="MainMenu" type="Control" unique_id=363615968]
 layout_mode = 3
 anchors_preset = 15
@@ -19,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2o76q")
 
 [node name="Panel" type="Panel" parent="." unique_id=742611203]
 layout_mode = 1
@@ -36,10 +41,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -184.03568
-offset_top = -203.51566
-offset_right = 312.93872
-offset_bottom = 39.41577
+offset_left = -193.99997
+offset_top = -147.0
+offset_right = 302.97443
+offset_bottom = 95.9314
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.3700098
@@ -51,16 +56,17 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_a5oxl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k45bu")
 text = "Start Game"
 
-[node name="Option" type="Button" parent="VBoxContainer" unique_id=1511330694]
+[node name="Settings" type="Button" parent="VBoxContainer" unique_id=1511330694]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_a5oxl")
-text = "Options
-"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k45bu")
+text = "Settings"
 
 [node name="Exit" type="Button" parent="VBoxContainer" unique_id=927496671]
 layout_mode = 2
@@ -68,5 +74,26 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_a5oxl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k45bu")
 text = "Exit
 "
+
+[node name="Label" type="Label" parent="." unique_id=1973612287]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 52.0
+offset_bottom = 172.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("2_ovrgc")
+theme_override_font_sizes/font_size = 80
+text = "THE GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
