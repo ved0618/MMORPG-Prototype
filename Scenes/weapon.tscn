@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c21ety73v2wgk"]
+
+[ext_resource type="Script" uid="uid://u3qva625eefm" path="res://Scripts/weapon.gd" id="1_er6cq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8p48p"]
+
+[node name="Weapon" type="Node2D" unique_id=42088450]
+script = ExtResource("1_er6cq")
+
+[node name="Hitbox(Area2D)" type="Area2D" parent="." unique_id=1003373459]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox(Area2D)" unique_id=1878053901]
+shape = SubResource("RectangleShape2D_8p48p")
