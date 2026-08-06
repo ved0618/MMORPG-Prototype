@@ -544,6 +544,20 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ijk27"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_x3wgy"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:speed")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("AnimatedSprite2D:flip_h")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+
 [node name="Player" type="CharacterBody2D" unique_id=1017006771]
 script = ExtResource("1_vgqql")
 
@@ -561,5 +575,8 @@ shape = SubResource("CapsuleShape2D_ijk27")
 script = ExtResource("5_x3wgy")
 
 [node name="Weapon" parent="." unique_id=42088450 instance=ExtResource("5_fkybt")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1124103490]
+replication_config = SubResource("SceneReplicationConfig_x3wgy")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

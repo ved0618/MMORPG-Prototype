@@ -23,27 +23,20 @@ var facing_direction = "down"
 var current_animation = ""
 var current_state = PlayerState.IDLE
 var direction = Vector2.ZERO
-@export var speed: float = 200.0
 
 #Main Game Loop
 #Executes every physics frame
 func _physics_process(_delta: float) -> void:
 	if not is_multiplayer_authority():
-		return  # <-- this is the missing line
-
-	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = input_dir * speed
+		move_and_slide()
+		handle_input()
 	
-	move_and_slide()
-	handle_input()
+		update_state()
+		update_facing_direction()
+		weapon.update_facing(facing_direction)
 	
-	update_state()
-	update_facing_direction()
-	weapon.update_facing(facing_direction)
-	
-	move_player()
-	update_animation()
-
+		move_player()
+		update_animation() 
 
 #Input Handling
 func handle_input() -> void:
