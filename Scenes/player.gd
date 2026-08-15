@@ -16,12 +16,13 @@ var direction = Vector2.ZERO
 
 
 func _physics_process(_delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
+
 	handle_input()
-	
 	update_facing_direction()
 	update_state()
 	update_animation()
-	
 	move_player()
 
 

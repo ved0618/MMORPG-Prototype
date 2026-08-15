@@ -548,15 +548,12 @@ _data = {
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:speed")
+properties/1/path = NodePath("AnimatedSprite2D:animation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("AnimatedSprite2D:animation")
+properties/2/path = NodePath("AnimatedSprite2D:flip_h")
 properties/2/spawn = true
-properties/2/replication_mode = 2
-properties/3/path = NodePath("AnimatedSprite2D:flip_h")
-properties/3/spawn = true
-properties/3/replication_mode = 2
+properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=1017006771]
 script = ExtResource("1_vgqql")
@@ -573,6 +570,7 @@ shape = SubResource("CapsuleShape2D_ijk27")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=855889561]
 script = ExtResource("5_x3wgy")
+enabled = false
 
 [node name="Weapon" parent="." unique_id=42088450 instance=ExtResource("5_fkybt")]
 

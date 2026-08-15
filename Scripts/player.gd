@@ -12,6 +12,7 @@ enum PlayerState {
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var weapon = $Weapon
 @onready var animation_player = $AnimationPlayer
+@onready var camera = $Camera2D
 @export var player_scene: PackedScene
 
 #Player Settings
@@ -24,19 +25,26 @@ var current_animation = ""
 var current_state = PlayerState.IDLE
 var direction = Vector2.ZERO
 
+func _ready() -> void:
+	# Only enable camera for the local player (authority)
+	if is_multiplayer_authority():
+		camera.enabled = true
+		camera.make_current()
+
 #Main Game Loop
 #Executes every physics frame
 func _physics_process(_delta: float) -> void:
-	if not is_multiplayer_authority():
-		move_and_slide()
+	# Only the authority (the owning peer) runs input and movement.
+	# The MultiplayerSynchronizer replicates position/animation to everyone else.
+	if is_multiplayer_authority():
 		handle_input()
-	
+
 		update_state()
 		update_facing_direction()
 		weapon.update_facing(facing_direction)
-	
+
 		move_player()
-		update_animation() 
+		update_animation()
 
 #Input Handling
 func handle_input() -> void:
