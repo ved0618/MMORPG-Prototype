@@ -31,12 +31,28 @@ func _ready() -> void:
 		camera.enabled = true
 		camera.make_current()
 
+	# Debug: print authority info
+	print("=== PLAYER READY ===")
+	print("Name: ", name)
+	print("My Peer ID: ", multiplayer.get_unique_id())
+	print("Is Authority: ", is_multiplayer_authority())
+	print("Authority ID: ", get_multiplayer_authority())
+	print("====================")
+
 #Main Game Loop
 #Executes every physics frame
 func _physics_process(_delta: float) -> void:
 	# Only the authority (the owning peer) runs input and movement.
 	# The MultiplayerSynchronizer replicates position/animation to everyone else.
-	if is_multiplayer_authority():
+	var is_auth = is_multiplayer_authority()
+	var auth_id = get_multiplayer_authority()
+	var my_id = multiplayer.get_unique_id()
+
+	# Debug every 60 frames
+	if Engine.get_frames_drawn() % 60 == 0:
+		print("PHYSICS: name=", name, " is_auth=", is_auth, " auth_id=", auth_id, " my_id=", my_id)
+
+	if is_auth:
 		handle_input()
 
 		update_state()
@@ -45,6 +61,10 @@ func _physics_process(_delta: float) -> void:
 
 		move_player()
 		update_animation()
+	else:
+		# Debug: if we're not authority but still getting input, something's wrong
+		if Input.get_vector("move_left", "move_right", "move_up", "move_down") != Vector2.ZERO:
+			print("WARNING: Non-authority player ", name, " receiving input! Authority: ", auth_id, " MyPeer: ", my_id, " is_auth: ", is_auth)
 
 #Input Handling
 func handle_input() -> void:

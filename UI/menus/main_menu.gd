@@ -39,7 +39,9 @@ func _on_join_multiplayer_pressed() -> void:
 		print("Failed to start client. Error: ", error)
 
 func _on_connected_to_server():
-	print("Connected to server")
+	print("=== CONNECTED TO SERVER ===")
+	print("My Peer ID: ", multiplayer.get_unique_id())
+	print("=============================")
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")  # only now, once confirmed
 
 func _on_connection_failed():
