@@ -2,93 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dv4y544h6e7yj" path="res://Scenes/world.gd" id="1_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://bnre5t3yih46x" path="res://Scenes/map_01.tscn" id="2_o06y3"]
-[ext_resource type="Script" uid="uid://u7uecna5gvul" path="res://Scenes/hurt_box.gd" id="3_5a7ea"]
-[ext_resource type="Script" uid="uid://2w6ikcjcoxue" path="res://Scenes/enemy.gd" id="3_8j60k"]
 [ext_resource type="PackedScene" uid="uid://0xouawn5xdtj" path="res://Scenes/map_02.tscn" id="3_k7acu"]
-[ext_resource type="Texture2D" uid="uid://3t0sydvufqre" path="res://Assets/Sprites/Player/FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="4_fo5ed"]
-[ext_resource type="Script" uid="uid://dnf5g46hf8s46" path="res://Scenes/health.gd" id="6_5ukr8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ukr8"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(0, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o06y3"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(96, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k7acu"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(192, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5v1tr"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(288, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0fj1v"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(384, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ikia7"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(480, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7yui6"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(576, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5t2i"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(672, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0ngr"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(768, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kn0ld"]
-atlas = ExtResource("4_fo5ed")
-region = Rect2(864, 0, 96, 96)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ijk27"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ukr8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o06y3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k7acu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5v1tr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0fj1v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ikia7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7yui6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c5t2i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e0ngr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kn0ld")
-}],
-"loop": 1,
-"name": &"test_animation",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5a7ea"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j60k"]
+[ext_resource type="PackedScene" uid="uid://yvomw6grvpwm" path="res://Scenes/enemy.tscn" id="4_8j60k"]
 
 [node name="World" type="Node2D" unique_id=1507974554]
 script = ExtResource("1_fo5ed")
@@ -125,23 +40,5 @@ position = Vector2(72, 84)
 [node name="Spawn6" type="Marker2D" parent="SpawnPoints" unique_id=1416156938]
 position = Vector2(189, 183)
 
-[node name="Enemy" type="CharacterBody2D" parent="." unique_id=641600731]
+[node name="Enemy" parent="." unique_id=1540470422 instance=ExtResource("4_8j60k")]
 position = Vector2(504, 315)
-script = ExtResource("3_8j60k")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy" unique_id=979811106]
-position = Vector2(-2, -16)
-sprite_frames = SubResource("SpriteFrames_ijk27")
-animation = &"test_animation"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=1859041998]
-shape = SubResource("CapsuleShape2D_5a7ea")
-
-[node name="HurtBox(Area2D)" type="Area2D" parent="Enemy" unique_id=1877518037]
-script = ExtResource("3_5a7ea")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/HurtBox(Area2D)" unique_id=547391416]
-shape = SubResource("RectangleShape2D_8j60k")
-
-[node name="Health(Node)" type="Node" parent="Enemy" unique_id=915966666]
-script = ExtResource("6_5ukr8")

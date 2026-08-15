@@ -10,11 +10,6 @@ var used_spawns: Dictionary = {}
 
 
 func _ready() -> void:
-	print("=== WORLD READY ===")
-	print("Is Server: ", multiplayer.is_server())
-	print("My Peer ID: ", multiplayer.get_unique_id())
-	print("===================")
-
 	player_spawner.spawn_function = _spawn_custom_player
 
 	multiplayer.peer_connected.connect(_peer_connected)

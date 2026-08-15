@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://yvomw6grvpwm"]
+
+[ext_resource type="Script" uid="uid://2w6ikcjcoxue" path="res://Scenes/enemy.gd" id="1_287tu"]
+[ext_resource type="Texture2D" uid="uid://b2nehortfhqv0" path="res://Assets/Sprites/enemy/wolf_fandbwalk.png" id="2_287tu"]
+[ext_resource type="Script" uid="uid://u7uecna5gvul" path="res://Scenes/hurt_box.gd" id="3_ghaa6"]
+[ext_resource type="Script" uid="uid://dnf5g46hf8s46" path="res://Scenes/health.gd" id="4_1dp5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0830c"]
+atlas = ExtResource("2_287tu")
+region = Rect2(31, 3, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghaa6"]
+atlas = ExtResource("2_287tu")
+region = Rect2(31, 37, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dp5w"]
+atlas = ExtResource("2_287tu")
+region = Rect2(31, 71, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auwsv"]
+atlas = ExtResource("2_287tu")
+region = Rect2(31, 105, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uf12"]
+atlas = ExtResource("2_287tu")
+region = Rect2(0, 0, 31, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po0sg"]
+atlas = ExtResource("2_287tu")
+region = Rect2(0, 34, 31, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haro7"]
+atlas = ExtResource("2_287tu")
+region = Rect2(0, 68, 31, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56vhr"]
+atlas = ExtResource("2_287tu")
+region = Rect2(0, 102, 31, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ijk27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0830c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghaa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dp5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auwsv")
+}],
+"loop": 1,
+"name": &"b_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uf12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po0sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haro7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56vhr")
+}],
+"loop": 1,
+"name": &"f_walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5a7ea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j60k"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1540470422]
+script = ExtResource("1_287tu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=168252442]
+position = Vector2(-2, -16)
+sprite_frames = SubResource("SpriteFrames_ijk27")
+animation = &"b_walk"
+frame_progress = 0.04515138
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452100587]
+position = Vector2(-3, -16)
+shape = SubResource("CapsuleShape2D_5a7ea")
+
+[node name="HurtBox(Area2D)" type="Area2D" parent="." unique_id=1697679482]
+script = ExtResource("3_ghaa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox(Area2D)" unique_id=1411940675]
+position = Vector2(-3, -14)
+shape = SubResource("RectangleShape2D_8j60k")
+
+[node name="Health(Node)" type="Node" parent="." unique_id=2084881863]
+script = ExtResource("4_1dp5w")
