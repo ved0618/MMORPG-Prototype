@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://gorfpdo6573o"]
 
 [ext_resource type="Script" uid="uid://dv4y544h6e7yj" path="res://Scenes/world.gd" id="1_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://bnre5t3yih46x" path="res://Scenes/map_01.tscn" id="2_o06y3"]
 [ext_resource type="Script" uid="uid://u7uecna5gvul" path="res://Scenes/hurt_box.gd" id="3_5a7ea"]
 [ext_resource type="Script" uid="uid://2w6ikcjcoxue" path="res://Scenes/enemy.gd" id="3_8j60k"]
+[ext_resource type="PackedScene" uid="uid://0xouawn5xdtj" path="res://Scenes/map_02.tscn" id="3_k7acu"]
 [ext_resource type="Texture2D" uid="uid://3t0sydvufqre" path="res://Assets/Sprites/Player/FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="4_fo5ed"]
 [ext_resource type="Script" uid="uid://dnf5g46hf8s46" path="res://Scenes/health.gd" id="6_5ukr8"]
 
@@ -91,7 +93,9 @@ animations = [{
 [node name="World" type="Node2D" unique_id=1507974554]
 script = ExtResource("1_fo5ed")
 
-[node name="Map01" type="TileMapLayer" parent="." unique_id=1307257137]
+[node name="Map01" parent="." unique_id=1951421256 instance=ExtResource("2_o06y3")]
+
+[node name="Map02" parent="." unique_id=1157756522 instance=ExtResource("3_k7acu")]
 
 [node name="Players" type="Node2D" parent="." unique_id=1987363639]
 
