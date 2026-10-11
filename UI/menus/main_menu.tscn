@@ -321,8 +321,8 @@ grow_vertical = 2
 [node name="main_menu" parent="." unique_id=525031002 instance=ExtResource("1_civke")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="main_menu" unique_id=1333612466]
-position = Vector2(577, 324.50003)
-scale = Vector2(0.6, 0.6739584)
+position = Vector2(640, 359)
+scale = Vector2(0.66562504, 0.74583334)
 sprite_frames = SubResource("SpriteFrames_imvie")
 animation = &"menu"
 
