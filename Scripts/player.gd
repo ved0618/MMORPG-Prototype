@@ -49,6 +49,19 @@ func _ready() -> void:
 		camera.enabled = true
 		camera.make_current()
 		_setup_camera_limits()
+		_setup_mobile_controls()
+
+
+func _setup_mobile_controls() -> void:
+	if not OS.has_feature("android") and not OS.has_feature("ios"):
+		return
+
+	var controls_scene := preload("res://UI/mobile_controls.tscn")
+	var controls_layer := CanvasLayer.new()
+	controls_layer.name = "MobileControlsLayer"
+	controls_layer.layer = 10
+	add_child(controls_layer)
+	controls_layer.add_child(controls_scene.instantiate())
 
 
 # Server-authorized level transition. The server owns progression, but each remote
@@ -155,7 +168,7 @@ func move_player(delta: float) -> void:
 		stamina.regen(delta)
 	else:
 		# Sprint (hold Shift) to outrun monsters. Requires stamina > 0.
-		var is_sprinting = Input.is_physical_key_pressed(KEY_SHIFT) and direction != Vector2.ZERO and stamina.current_stamina > 0.0
+		var is_sprinting = Input.is_action_pressed("sprint") and direction != Vector2.ZERO and stamina.current_stamina > 0.0
 		if is_sprinting:
 			stamina.drain(delta)
 			velocity = direction * RUN_SPEED

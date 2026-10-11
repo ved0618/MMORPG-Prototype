@@ -8,6 +8,7 @@ var pause_menu = null
 
 func _ready() -> void:
 	limit_smoothed = true
+	add_to_group("pause_controller")
 
 
 func _process(_delta: float) -> void:
@@ -36,6 +37,11 @@ func _update_limits() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
-		if pause_menu == null:
-			pause_menu = pause_menu_scene.instantiate()
-			add_child(pause_menu)
+		open_pause_menu()
+
+
+func open_pause_menu() -> void:
+	if pause_menu == null:
+		pause_menu = pause_menu_scene.instantiate()
+		add_child(pause_menu)
+		get_tree().paused = true
