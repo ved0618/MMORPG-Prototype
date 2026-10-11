@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://ceg474txchnjw" path="res://Scenes/spawner.gd" id="1_spawn"]
+[ext_resource type="PackedScene" uid="uid://yvomw6grvpwm" path="res://Scenes/enemy.tscn" id="2_monster"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_spawn")
+monster_scene = ExtResource("2_monster")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true

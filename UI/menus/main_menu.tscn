@@ -361,6 +361,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_k45bu")
 text = "Exit
 "
 
+[node name="Host IP" type="LineEdit" parent="main_menu/AnimatedSprite2D/VBoxContainer" unique_id=856693961]
+layout_mode = 2
+
 [node name="Label" type="Label" parent="main_menu" unique_id=1973612287]
 anchors_preset = 10
 anchor_right = 1.0

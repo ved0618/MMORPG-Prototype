@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://csjln5r77hf1k"]
+
+[ext_resource type="PackedScene" uid="uid://cbewnipbwi5i6" path="res://Scenes/maps/map_001.tscn" id="1_deww1"]
+[ext_resource type="PackedScene" uid="uid://db8iprw32s5h0" path="res://Scenes/maps/map_006.tscn" id="2_o33sj"]
+[ext_resource type="PackedScene" uid="uid://xl7u7pitdhse" path="res://Scenes/maps/map_014.tscn" id="3_sia10"]
+[ext_resource type="PackedScene" uid="uid://mdgwtt4cwe8" path="res://Scenes/maps/map_019.tscn" id="4_crl4h"]
+[ext_resource type="PackedScene" uid="uid://ddsiwhh7rww4d" path="res://Scenes/maps/map_022.tscn" id="5_4kspe"]
+[ext_resource type="PackedScene" uid="uid://cr82v7n4lad23" path="res://Scenes/maps/map_002.tscn" id="6_64ek3"]
+[ext_resource type="PackedScene" uid="uid://bncywrsnm5cht" path="res://Scenes/maps/map_007.tscn" id="7_dtg1j"]
+[ext_resource type="PackedScene" uid="uid://dlabmkexy65ot" path="res://Scenes/maps/map_015.tscn" id="8_x4i60"]
+[ext_resource type="PackedScene" uid="uid://cl8ha5eri6ca6" path="res://Scenes/maps/map_020.tscn" id="9_nc5ln"]
+[ext_resource type="PackedScene" uid="uid://c3ijwgtda7iy6" path="res://Scenes/maps/map_024.tscn" id="10_o25hl"]
+[ext_resource type="PackedScene" uid="uid://7qok6b25x6h8" path="res://Scenes/maps/map_003.tscn" id="11_de0yh"]
+[ext_resource type="PackedScene" uid="uid://r1dsdqlvxboq" path="res://Scenes/maps/map_008.tscn" id="12_hucga"]
+[ext_resource type="PackedScene" uid="uid://dgk7hwluhw54j" path="res://Scenes/maps/map_011.tscn" id="13_fl2ro"]
+[ext_resource type="PackedScene" uid="uid://dqbmu0qeo0gvi" path="res://Scenes/maps/map_017.tscn" id="14_710ts"]
+[ext_resource type="PackedScene" uid="uid://cwtgysi35vtbk" path="res://Scenes/maps/map_023.tscn" id="15_ucmbe"]
+[ext_resource type="PackedScene" uid="uid://cay8jy770tcme" path="res://Scenes/maps/map_004.tscn" id="16_e643n"]
+[ext_resource type="PackedScene" uid="uid://cwrncy6qwv5qc" path="res://Scenes/maps/map_009.tscn" id="17_5sgvb"]
+[ext_resource type="PackedScene" uid="uid://bhn8a7w4ylwgt" path="res://Scenes/maps/map_012.tscn" id="18_pa82y"]
+[ext_resource type="PackedScene" uid="uid://bexe0x134o6lw" path="res://Scenes/maps/map_016.tscn" id="19_1g3um"]
+[ext_resource type="PackedScene" uid="uid://hvfp2i6opntu" path="res://Scenes/maps/map_025.tscn" id="20_fhpn7"]
+[ext_resource type="PackedScene" uid="uid://bakqtn5mxln7b" path="res://Scenes/maps/map_005.tscn" id="21_bpbq6"]
+[ext_resource type="PackedScene" uid="uid://b7e2fkmu8xrs4" path="res://Scenes/maps/map_010.tscn" id="22_2x1k1"]
+[ext_resource type="PackedScene" uid="uid://ctngqpj8ymk4" path="res://Scenes/maps/map_013.tscn" id="23_ndx36"]
+[ext_resource type="PackedScene" uid="uid://dlgjg0i8ppac0" path="res://Scenes/maps/map_018.tscn" id="24_5bqff"]
+[ext_resource type="PackedScene" uid="uid://dyyb6wfl8hwof" path="res://Scenes/maps/map_021.tscn" id="25_r6vdj"]
+[ext_resource type="PackedScene" uid="uid://b5b6d6nbf4fvw" path="res://Scenes/maps/map_026.tscn" id="26_dv6sj"]
+
+[node name="WorldMap" type="Node2D" unique_id=638310843]
+
+[node name="Map_001" parent="." unique_id=1346714850 instance=ExtResource("1_deww1")]
+position = Vector2(-611, -433)
+
+[node name="Map_002" parent="." unique_id=1035618635 instance=ExtResource("2_o33sj")]
+position = Vector2(945, -394)
+
+[node name="Map_003" parent="." unique_id=566561776 instance=ExtResource("3_sia10")]
+position = Vector2(2570, -443)
+
+[node name="Map_004" parent="." unique_id=783076110 instance=ExtResource("4_crl4h")]
+position = Vector2(4244, -443)
+
+[node name="Map_005" parent="." unique_id=897425900 instance=ExtResource("5_4kspe")]
+position = Vector2(6036, -424)
+
+[node name="Map_006" parent="." unique_id=1054897654 instance=ExtResource("6_64ek3")]
+position = Vector2(-621, 582)
+
+[node name="Map_007" parent="." unique_id=1814466301 instance=ExtResource("7_dtg1j")]
+position = Vector2(955, 582)
+
+[node name="Map_008" parent="." unique_id=1270073723 instance=ExtResource("8_x4i60")]
+position = Vector2(2619, 533)
+
+[node name="Map_009" parent="." unique_id=510511121 instance=ExtResource("9_nc5ln")]
+position = Vector2(4254, 533)
+
+[node name="Map_010" parent="." unique_id=594203467 instance=ExtResource("10_o25hl")]
+position = Vector2(6026, 622)
+
+[node name="Map_011" parent="." unique_id=2037733073 instance=ExtResource("11_de0yh")]
+position = Vector2(-611, 1479)
+
+[node name="Map_012" parent="." unique_id=2124769588 instance=ExtResource("12_hucga")]
+position = Vector2(1280, 1440)
+
+[node name="Map_013" parent="." unique_id=1200864945 instance=ExtResource("13_fl2ro")]
+position = Vector2(2560, 1440)
+
+[node name="Map_014" parent="." unique_id=1908587988 instance=ExtResource("14_710ts")]
+position = Vector2(3840, 1440)
+
+[node name="Map_015" parent="." unique_id=1061518441 instance=ExtResource("15_ucmbe")]
+position = Vector2(5120, 1440)
+
+[node name="Map_016" parent="." unique_id=529342175 instance=ExtResource("16_e643n")]
+position = Vector2(-601, 2347)
+
+[node name="Map_017" parent="." unique_id=1922627757 instance=ExtResource("17_5sgvb")]
+position = Vector2(1280, 2160)
+
+[node name="Map_018" parent="." unique_id=106149294 instance=ExtResource("18_pa82y")]
+position = Vector2(2560, 2160)
+
+[node name="Map_019" parent="." unique_id=1317137637 instance=ExtResource("19_1g3um")]
+position = Vector2(3840, 2160)
+
+[node name="Map_020" parent="." unique_id=1871490451 instance=ExtResource("20_fhpn7")]
+position = Vector2(5120, 2160)
+
+[node name="Map_021" parent="." unique_id=24331153 instance=ExtResource("21_bpbq6")]
+position = Vector2(-581, 3274)
+
+[node name="Map_022" parent="." unique_id=124360810 instance=ExtResource("22_2x1k1")]
+position = Vector2(1280, 2880)
+
+[node name="Map_023" parent="." unique_id=1293084392 instance=ExtResource("23_ndx36")]
+position = Vector2(2560, 2880)
+
+[node name="Map_024" parent="." unique_id=816887126 instance=ExtResource("24_5bqff")]
+position = Vector2(3840, 2880)
+
+[node name="Map_025" parent="." unique_id=1843046494 instance=ExtResource("25_r6vdj")]
+position = Vector2(5120, 2880)
+
+[node name="Map_026" parent="." unique_id=1049096288 instance=ExtResource("26_dv6sj")]
+position = Vector2(6400, 2880)
