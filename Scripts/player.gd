@@ -32,6 +32,7 @@ const TELEPORT_DURATION: float = 0.16
 const TELEPORT_SPEED: float = 600.0  # = TELEPORT_DISTANCE / TELEPORT_DURATION
 const TELEPORT_STAMINA_COST: float = 30.0
 const TELEPORT_COOLDOWN_TIME: float = 4.0
+const ATTACK_STATE_TIMEOUT: float = 0.9
 
 #Runtime Variables
 #Updated while the game is running
@@ -42,6 +43,7 @@ var direction = Vector2.ZERO
 var teleport_cooldown: float = 0.0
 var teleport_timer: float = 0.0
 var is_invulnerable: bool = false
+var attack_state_timer: float = 0.0
 
 func _ready() -> void:
 	# Only enable camera for the local player (authority)
@@ -90,6 +92,10 @@ func _physics_process(delta: float) -> void:
 
 	# Tick cooldowns even outside the auth block (timer is local only)
 	teleport_cooldown = maxf(teleport_cooldown - delta, 0.0)
+	if current_state == PlayerState.ATTACKING:
+		attack_state_timer = maxf(attack_state_timer - delta, 0.0)
+		if attack_state_timer == 0.0:
+			_finish_attack_state()
 
 	# Teleport ticks for all peers (local visual movement)
 	if teleport_timer > 0.0:
@@ -139,6 +145,7 @@ func handle_combat_input() -> void:
 
 	if Input.is_action_just_pressed("attack"):
 		current_state = PlayerState.ATTACKING
+		attack_state_timer = ATTACK_STATE_TIMEOUT
 		# AnimationPlayer controls when the hitbox becomes active
 		animation_player.play("Attack")
 		# Broadcast the attack to all peers so they play the visual animation
@@ -155,6 +162,7 @@ func _rpc_play_attack(attack_facing: String) -> void:
 	# Update facing and play the correct attack sprite animation
 	facing_direction = attack_facing
 	current_state = PlayerState.ATTACKING
+	attack_state_timer = ATTACK_STATE_TIMEOUT
 	update_animation()
 
 #Movement
@@ -289,6 +297,11 @@ func update_facing_direction() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if current_state != PlayerState.ATTACKING:
 		return
+	_finish_attack_state()
+
+
+func _finish_attack_state() -> void:
+	attack_state_timer = 0.0
 	if direction == Vector2.ZERO:
 		current_state = PlayerState.IDLE
 	else:
