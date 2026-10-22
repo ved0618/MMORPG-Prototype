@@ -60,7 +60,7 @@ func _on_start_game_pressed() -> void:
 		print("================================")
 
 		get_tree().change_scene_to_file(
-			"res://Scenes/world.tscn"
+			"res://Scenes/world_3d.tscn"
 		)
 
 	else:
@@ -135,7 +135,7 @@ func _on_connected_to_server() -> void:
 	print("================================")
 
 	get_tree().change_scene_to_file(
-		"res://Scenes/world.tscn"
+		"res://Scenes/world_3d.tscn"
 	)
 
 

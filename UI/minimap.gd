@@ -106,7 +106,17 @@ func _draw() -> void:
 	if _player and _map_manager:
 		var current_map = _map_manager.get_current_map()
 		if current_map:
-			var local_pos: Vector2 = _player.global_position - current_map.global_position
+			var player_pos: Vector2
+			var map_pos: Vector2
+			if _player is Node3D:
+				player_pos = Vector2(_player.global_position.x, _player.global_position.z)
+			else:
+				player_pos = _player.global_position
+			if current_map is Node3D:
+				map_pos = Vector2(current_map.global_position.x, current_map.global_position.z)
+			else:
+				map_pos = current_map.global_position
+			var local_pos: Vector2 = player_pos - map_pos
 			var map_grid: Vector2 = MapDataScript.MAPS[current_id].get("grid_pos", Vector2.ZERO)
 			var origin := _grid_to_screen(map_grid)
 

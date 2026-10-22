@@ -1,0 +1,207 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/map_3d.gd" id="1_7t3jd"]
+[ext_resource type="PackedScene" path="res://Scenes/spawner_3d.tscn" id="2_ptjdk"]
+[ext_resource type="Script" path="res://Scripts/spawner_3d.gd" id="3_gkdke"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy_scenes/slime_2_3d.tscn" id="4_hnnsd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1c0a"]
+albedo_color = Color(0.48, 0.4, 0.18, 1)
+roughness = 0.85
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i2auf"]
+material = SubResource("StandardMaterial3D_m1c0a")
+size = Vector2(42, 26)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wpr0"]
+size = Vector3(42, 0.5, 26)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jb5em"]
+albedo_color = Color(0.28, 0.28, 0.32, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_euu7g"]
+material = SubResource("StandardMaterial3D_jb5em")
+size = Vector3(44, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wonwr"]
+material = SubResource("StandardMaterial3D_jb5em")
+size = Vector3(44, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tc2uj"]
+material = SubResource("StandardMaterial3D_jb5em")
+size = Vector3(1, 2, 26)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w6y5g"]
+material = SubResource("StandardMaterial3D_jb5em")
+size = Vector3(1, 2, 26)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tq75i"]
+albedo_color = Color(0.25, 0.25, 0.28, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oko4x"]
+material = SubResource("StandardMaterial3D_tq75i")
+top_radius = 0.35
+bottom_radius = 0.45
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qayt"]
+albedo_color = Color(0.25, 0.25, 0.28, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h14ih"]
+material = SubResource("StandardMaterial3D_4qayt")
+top_radius = 0.35
+bottom_radius = 0.45
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftes0"]
+albedo_color = Color(0.25, 0.25, 0.28, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1h7ya"]
+material = SubResource("StandardMaterial3D_ftes0")
+top_radius = 0.35
+bottom_radius = 0.45
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7lod"]
+albedo_color = Color(0.25, 0.25, 0.28, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fpcig"]
+material = SubResource("StandardMaterial3D_f7lod")
+top_radius = 0.35
+bottom_radius = 0.45
+height = 1.6
+
+[node name="Map_007" type="Node3D" unique_id=2091752959]
+script = ExtResource("1_7t3jd")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="." unique_id=517720073]
+mesh = SubResource("PlaneMesh_i2auf")
+
+[node name="FloorStaticBody" type="StaticBody3D" parent="." unique_id=2053437498]
+collision_mask = 6
+
+[node name="FloorCollision" type="CollisionShape3D" parent="FloorStaticBody" unique_id=314802518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_8wpr0")
+
+[node name="PerimeterWalls" type="Node3D" parent="." unique_id=1059083766]
+
+[node name="WallTop" type="MeshInstance3D" parent="PerimeterWalls" unique_id=1322289438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -13)
+mesh = SubResource("BoxMesh_euu7g")
+
+[node name="WallBottom" type="MeshInstance3D" parent="PerimeterWalls" unique_id=2005664310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 13)
+mesh = SubResource("BoxMesh_wonwr")
+
+[node name="WallLeft" type="MeshInstance3D" parent="PerimeterWalls" unique_id=1919600147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1, 0)
+mesh = SubResource("BoxMesh_tc2uj")
+
+[node name="WallRight" type="MeshInstance3D" parent="PerimeterWalls" unique_id=810319605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1, 0)
+mesh = SubResource("BoxMesh_w6y5g")
+
+[node name="Torches" type="Node3D" parent="." unique_id=1931629806]
+
+[node name="Torch_0" type="Node3D" parent="Torches" unique_id=1298674616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -11)
+
+[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_0" unique_id=721501895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CylinderMesh_oko4x")
+
+[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_0" unique_id=477918096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+light_color = Color(1, 0.7, 0.3, 1)
+light_energy = 1.4
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="Torch_1" type="Node3D" parent="Torches" unique_id=1438912395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -11)
+
+[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_1" unique_id=774459572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CylinderMesh_h14ih")
+
+[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_1" unique_id=724885544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+light_color = Color(1, 0.7, 0.3, 1)
+light_energy = 1.4
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="Torch_2" type="Node3D" parent="Torches" unique_id=2019191691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 11)
+
+[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_2" unique_id=798293709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CylinderMesh_1h7ya")
+
+[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_2" unique_id=729042111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+light_color = Color(1, 0.7, 0.3, 1)
+light_energy = 1.4
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="Torch_3" type="Node3D" parent="Torches" unique_id=1518615789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 11)
+
+[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_3" unique_id=1797091026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CylinderMesh_fpcig")
+
+[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_3" unique_id=1943086178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+light_color = Color(1, 0.7, 0.3, 1)
+light_energy = 1.4
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=1595467654]
+
+[node name="CenterSpawn" type="Marker3D" parent="SpawnPoints" unique_id=399455966]
+
+[node name="EnterTop" type="Marker3D" parent="SpawnPoints" unique_id=957266259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+
+[node name="EnterBottom" type="Marker3D" parent="SpawnPoints" unique_id=1248878048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+
+[node name="EnterLeft" type="Marker3D" parent="SpawnPoints" unique_id=1843634929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="EnterRight" type="Marker3D" parent="SpawnPoints" unique_id=2066205456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+
+[node name="Spawners" type="Node3D" parent="." unique_id=2063761992]
+
+[node name="SpawnerA" type="Node3D" parent="Spawners" unique_id=610970167 instance=ExtResource("2_ptjdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 4)
+script = ExtResource("3_gkdke")
+monster_scene = ExtResource("4_hnnsd")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerA" unique_id=309956166]
+_spawnable_scenes = PackedStringArray("res://Scenes/enemy_scenes/slime_1_3d.tscn", "res://Scenes/enemy_scenes/slime_2_3d.tscn", "res://Scenes/enemy_scenes/slime_3_3d.tscn", "res://Scenes/enemy_scenes/slime_4_3d.tscn", "res://Scenes/enemy_scenes/slime_5_3d.tscn", "res://Scenes/enemy_scenes/boss_3d.tscn")
+spawn_path = NodePath("..")
+
+[node name="SpawnerB" type="Node3D" parent="Spawners" unique_id=2119429278 instance=ExtResource("2_ptjdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+script = ExtResource("3_gkdke")
+monster_scene = ExtResource("4_hnnsd")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerB" unique_id=1614404863]
+_spawnable_scenes = PackedStringArray("res://Scenes/enemy_scenes/slime_1_3d.tscn", "res://Scenes/enemy_scenes/slime_2_3d.tscn", "res://Scenes/enemy_scenes/slime_3_3d.tscn", "res://Scenes/enemy_scenes/slime_4_3d.tscn", "res://Scenes/enemy_scenes/slime_5_3d.tscn", "res://Scenes/enemy_scenes/boss_3d.tscn")
+spawn_path = NodePath("..")
+
+[node name="SpawnerC" type="Node3D" parent="Spawners" unique_id=1456380706 instance=ExtResource("2_ptjdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 4)
+script = ExtResource("3_gkdke")
+monster_scene = ExtResource("4_hnnsd")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerC" unique_id=454734661]
+_spawnable_scenes = PackedStringArray("res://Scenes/enemy_scenes/slime_1_3d.tscn", "res://Scenes/enemy_scenes/slime_2_3d.tscn", "res://Scenes/enemy_scenes/slime_3_3d.tscn", "res://Scenes/enemy_scenes/slime_4_3d.tscn", "res://Scenes/enemy_scenes/slime_5_3d.tscn", "res://Scenes/enemy_scenes/boss_3d.tscn")
+spawn_path = NodePath("..")

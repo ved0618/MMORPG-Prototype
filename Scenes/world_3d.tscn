@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c3dw0rld8v2x1"]
+
+[ext_resource type="Script" path="res://Scenes/world_3d.gd" id="1_w3d"]
+[ext_resource type="Script" path="res://Scripts/map_manager_3d.gd" id="2_mm3d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w3d"]
+sky_top_color = Color(0.38, 0.52, 0.75, 1)
+sky_horizon_color = Color(0.65, 0.72, 0.82, 1)
+ground_bottom_color = Color(0.18, 0.16, 0.15, 1)
+ground_horizon_color = Color(0.55, 0.62, 0.7, 1)
+
+[sub_resource type="Sky" id="Sky_w3d"]
+sky_material = SubResource("ProceduralSkyMaterial_w3d")
+
+[sub_resource type="Environment" id="Environment_w3d"]
+background_mode = 2
+sky = SubResource("Sky_w3d")
+ambient_light_source = 2
+ambient_light_color = Color(0.42, 0.44, 0.50, 1)
+ambient_light_energy = 1.0
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 0.35
+glow_bloom = 0.12
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_w3d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 15, 0)
+light_color = Color(1, 0.95, 0.88, 1)
+light_energy = 1.25
+shadow_enabled = true
+shadow_bias = 0.05
+directional_shadow_max_distance = 60.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w3d")
+
+[node name="Maps" type="Node3D" parent="."]
+script = ExtResource("2_mm3d")
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Players"]
+_spawnable_scenes = PackedStringArray("res://Scenes/player_3d.tscn")
+spawn_path = NodePath("..")

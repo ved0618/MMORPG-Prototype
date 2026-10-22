@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c1spwn3d7v2m9"]
+
+[ext_resource type="Script" path="res://Scripts/spawner_3d.gd" id="1_sp3d"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy_scenes/slime_1_3d.tscn" id="2_slm1"]
+
+[node name="Spawner3D" type="Node3D"]
+script = ExtResource("1_sp3d")
+monster_scene = ExtResource("2_slm1")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/enemy_scenes/slime_1_3d.tscn", "res://Scenes/enemy_scenes/slime_2_3d.tscn", "res://Scenes/enemy_scenes/slime_3_3d.tscn", "res://Scenes/enemy_scenes/slime_4_3d.tscn", "res://Scenes/enemy_scenes/slime_5_3d.tscn", "res://Scenes/enemy_scenes/boss_3d.tscn")
+spawn_path = NodePath("..")
