@@ -11,6 +11,20 @@ func get_damage() -> int:
 	return 10
 
 
+func get_attacker_peer_id() -> int:
+	if weapon:
+		var p = weapon.get_parent()
+		if p:
+			return int(p.name)
+	return 1
+
+
+func get_attacker_player() -> Node:
+	if weapon:
+		return weapon.get_parent()
+	return null
+
+
 func _ready() -> void:
 	collision_layer = 8   # Layer 4 (Hitboxes)
 	collision_mask = 16   # Layer 5 (Hurtboxes)

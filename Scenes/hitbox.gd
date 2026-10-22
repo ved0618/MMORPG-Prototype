@@ -8,6 +8,20 @@ extends Area2D
 func get_damage() -> int:
 	return weapon.damage
 
+
+func get_attacker_peer_id() -> int:
+	if weapon:
+		var p = weapon.get_parent()
+		if p:
+			return int(p.name)
+	return 1
+
+
+func get_attacker_player() -> Node:
+	if weapon:
+		return weapon.get_parent()
+	return null
+
 func _ready():
 	# Disable the collision until the attack animation activates it
 	monitoring = false

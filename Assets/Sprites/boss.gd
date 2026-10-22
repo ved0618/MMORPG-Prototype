@@ -30,6 +30,7 @@ var dead: bool = false
 var attacking: bool = false
 var hurt_animation_playing: bool = false
 var facing_direction := "front"
+var _last_attacker_peer_id: int = 1
 
 
 func _ready() -> void:
@@ -249,6 +250,9 @@ func _on_hit_received(hitbox) -> void:
 
 	var damage: int = hitbox.get_damage()
 
+	if hitbox.has_method("get_attacker_peer_id"):
+		_last_attacker_peer_id = hitbox.get_attacker_peer_id()
+
 	print("Boss Damage: ", damage)
 
 	health.take_damage(damage)
@@ -284,6 +288,10 @@ func _on_died() -> void:
 	print("================================")
 	print("BOSS DEFEATED!")
 	print("================================")
+
+	var world = get_tree().current_scene
+	if world and world.has_method("record_kill"):
+		world.record_kill(_last_attacker_peer_id)
 
 	animated_sprite.play(_animation_name("death", facing_direction))
 	await animated_sprite.animation_finished

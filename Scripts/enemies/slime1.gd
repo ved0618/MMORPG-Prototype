@@ -95,6 +95,7 @@ var _is_dead: bool = false
 
 # Avoid sending redundant facing updates every physics frame.
 var _last_synced_flip_h: bool = false
+var _last_attacker_peer_id: int = 1
 
 
 func _ready() -> void:
@@ -595,9 +596,12 @@ func _request_server_damage(attacker_path: NodePath, requested_damage: int) -> v
 	_apply_server_damage(attacker, requested_damage)
 
 
-func _apply_server_damage(_attacker: Node, amount: int) -> void:
+func _apply_server_damage(attacker: Node, amount: int) -> void:
 	if not multiplayer.is_server() or _is_dead or amount <= 0:
 		return
+
+	if attacker != null:
+		_last_attacker_peer_id = int(attacker.name)
 
 	_play_hurt_animation()
 	health.take_damage(amount)
@@ -715,8 +719,10 @@ func _on_died() -> void:
 	var world := get_tree().current_scene
 
 	if world.has_method("enemy_died"):
-
 		world.enemy_died(self)
+
+	if world.has_method("record_kill"):
+		world.record_kill(_last_attacker_peer_id)
 
 
 	# --------------------------------------------------------

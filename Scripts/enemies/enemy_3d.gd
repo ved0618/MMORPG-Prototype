@@ -120,12 +120,20 @@ func _attack() -> void:
 			hp.take_damage(attack_damage)
 
 
+var _last_attacker_peer_id: int = 1
+
+
 func _on_hit_received(hitbox_area: Area3D) -> void:
 	if _is_dead:
 		return
 	var dmg: int = 10
 	if hitbox_area and hitbox_area.has_method("get_damage"):
 		dmg = hitbox_area.get_damage()
+
+	if hitbox_area and hitbox_area.has_method("get_attacker_peer_id"):
+		_last_attacker_peer_id = hitbox_area.get_attacker_peer_id()
+	elif _target_player and is_instance_valid(_target_player):
+		_last_attacker_peer_id = int(_target_player.name)
 
 	if health and health.has_method("take_damage"):
 		health.take_damage(dmg)
@@ -144,6 +152,12 @@ func _on_died() -> void:
 		hurtbox.set_deferred("monitoring", false)
 		hurtbox.set_deferred("monitorable", false)
 	_play_anim("death")
+
+	# Award kill to the attacking player on the server
+	if not multiplayer.has_multiplayer_peer() or multiplayer.is_server():
+		var world = get_tree().current_scene
+		if world and world.has_method("record_kill"):
+			world.record_kill(_last_attacker_peer_id)
 
 
 func _on_animation_finished() -> void:

@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://cd8k3dhud9v1m"]
+
+[ext_resource type="Script" path="res://Scripts/kill_death_hud.gd" id="1_kdhud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_counter"]
+bg_color = Color(0.101961, 0.101961, 0.129412, 0.88)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.4, 0.5, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scoreboard"]
+bg_color = Color(0.0784314, 0.0823529, 0.109804, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.784314, 0.647059, 0.27451, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="KillDeathHUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_kdhud")
+
+[node name="CounterPanel" type="PanelContainer" parent="."]
+offset_left = 10.0
+offset_top = 58.0
+offset_right = 210.0
+offset_bottom = 88.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_counter")
+
+[node name="MarginContainer" type="MarginContainer" parent="CounterPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 3
+
+[node name="CounterLabel" type="Label" parent="CounterPanel/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 13
+text = "⚔️ Kills: 0   💀 Deaths: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreboardPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -140.0
+offset_right = 220.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_scoreboard")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScoreboardPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreboardPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="ScoreboardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.85, 0.4, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "MATCH SCOREBOARD"
+horizontal_alignment = 1
+
+[node name="HeaderRow" type="HBoxContainer" parent="ScoreboardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerHeader" type="Label" parent="ScoreboardPanel/MarginContainer/VBoxContainer/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 13
+text = "PLAYER"
+
+[node name="KillsHeader" type="Label" parent="ScoreboardPanel/MarginContainer/VBoxContainer/HeaderRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "KILLS"
+horizontal_alignment = 1
+
+[node name="DeathsHeader" type="Label" parent="ScoreboardPanel/MarginContainer/VBoxContainer/HeaderRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "DEATHS"
+horizontal_alignment = 1
+
+[node name="KDHeader" type="Label" parent="ScoreboardPanel/MarginContainer/VBoxContainer/HeaderRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "K/D"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ScoreboardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerList" type="VBoxContainer" parent="ScoreboardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="HSeparator2" type="HSeparator" parent="ScoreboardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Footer" type="Label" parent="ScoreboardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.55, 0.6, 1)
+theme_override_font_sizes/font_size = 11
+text = "[TAB] Hold to view scoreboard"
+horizontal_alignment = 1

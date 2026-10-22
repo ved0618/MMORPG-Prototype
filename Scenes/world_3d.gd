@@ -9,7 +9,11 @@ const BASE_PLAYER_HP := 100
 @onready var player_spawner: MultiplayerSpawner = $Players/MultiplayerSpawner
 @onready var map_manager: Node3D = $Maps
 
+signal stats_updated(all_stats: Dictionary)
+
+# Persists max HP and kill/death stats across death/respawn and level transitions
 var player_max_health: Dictionary = {}
+var player_stats: Dictionary = {} # peer_id -> {"kills": int, "deaths": int}
 
 
 func _ready() -> void:
@@ -22,11 +26,16 @@ func _ready() -> void:
 		map_manager.map_transitioned.connect(_on_map_transitioned)
 
 	if multiplayer.has_multiplayer_peer() and multiplayer.is_server():
-		_spawn_player(multiplayer.get_unique_id())
+		var host_id := multiplayer.get_unique_id()
+		player_stats[host_id] = {"kills": 0, "deaths": 0}
+		_spawn_player(host_id)
 		_show_host_ip_overlay()
+		_sync_stats()
 	elif not multiplayer.has_multiplayer_peer():
 		# Standalone / single player mode support
+		player_stats[1] = {"kills": 0, "deaths": 0}
 		_spawn_player(1)
+		_sync_stats()
 
 	print("World3D ready complete, is_server: ", multiplayer.is_server())
 
@@ -34,9 +43,12 @@ func _ready() -> void:
 func _peer_connected(peer_id: int) -> void:
 	print("Peer connected: ", peer_id)
 	if multiplayer.is_server():
+		if not player_stats.has(peer_id):
+			player_stats[peer_id] = {"kills": 0, "deaths": 0}
 		if map_manager.has_method("_rpc_load_map"):
 			map_manager._rpc_load_map.rpc_id(peer_id, map_manager.current_map_id)
 		_spawn_player(peer_id)
+		_sync_stats()
 
 
 func _peer_disconnected(peer_id: int) -> void:
@@ -44,6 +56,8 @@ func _peer_disconnected(peer_id: int) -> void:
 	if players.has_node(str(peer_id)):
 		players.get_node(str(peer_id)).queue_free()
 	player_max_health.erase(peer_id)
+	player_stats.erase(peer_id)
+	_sync_stats()
 
 
 func _spawn_player(peer_id: int) -> void:
@@ -92,11 +106,36 @@ func _on_player_died(peer_id: int) -> void:
 	if multiplayer.has_multiplayer_peer() and not multiplayer.is_server():
 		return
 
+	if not player_stats.has(peer_id):
+		player_stats[peer_id] = {"kills": 0, "deaths": 0}
+	player_stats[peer_id]["deaths"] += 1
+	_sync_stats()
+
 	var player := players.get_node_or_null(str(peer_id))
 	if player:
 		player.queue_free()
 
 	get_tree().create_timer(3.0).timeout.connect(_respawn_player.bind(peer_id))
+
+
+func record_kill(killer_peer_id: int) -> void:
+	if not multiplayer.has_multiplayer_peer() or multiplayer.is_server():
+		if not player_stats.has(killer_peer_id):
+			player_stats[killer_peer_id] = {"kills": 0, "deaths": 0}
+		player_stats[killer_peer_id]["kills"] += 1
+		_sync_stats()
+
+
+func _sync_stats() -> void:
+	stats_updated.emit(player_stats)
+	if multiplayer.has_multiplayer_peer() and multiplayer.is_server():
+		_rpc_sync_stats.rpc(player_stats)
+
+
+@rpc("authority", "call_remote", "reliable")
+func _rpc_sync_stats(all_stats: Dictionary) -> void:
+	player_stats = all_stats
+	stats_updated.emit(player_stats)
 
 
 func _respawn_player(peer_id: int) -> void:

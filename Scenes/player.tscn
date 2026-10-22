@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://h8h1nx60oeim" path="res://Scripts/health_hud.gd" id="9_hhud"]
 [ext_resource type="Script" uid="uid://dddncgwhytmnv" path="res://Scripts/biome_transition_detector.gd" id="10_biodet"]
 [ext_resource type="Script" uid="uid://car8xerguhg60" path="res://UI/minimap.gd" id="11_minimap"]
+[ext_resource type="PackedScene" path="res://Scenes/kill_death_hud.tscn" id="12_kdhud"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
 atlas = ExtResource("2_pu2lt")
@@ -714,5 +715,7 @@ offset_bottom = 16.0
 theme_override_styles/background = SubResource("StyleBoxFlat_hp_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
 show_percentage = false
+
+[node name="KillDeathHUD" parent="." instance=ExtResource("12_kdhud")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
