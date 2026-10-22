@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Environment/bush.png" id="1_bush"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bush"]
+radius = 0.45
+
+[node name="PropBush" type="StaticBody3D" groups=["environment_props", "bushes"]]
+collision_layer = 1
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(0, 16)
+pixel_size = 0.045
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("1_bush")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("SphereShape3D_bush")

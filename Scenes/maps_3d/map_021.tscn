@@ -1,207 +1,927 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Scripts/map_3d.gd" id="1_p5t7i"]
-[ext_resource type="PackedScene" path="res://Scenes/spawner_3d.tscn" id="2_ie5y7"]
-[ext_resource type="Script" path="res://Scripts/spawner_3d.gd" id="3_j65bc"]
-[ext_resource type="PackedScene" path="res://Scenes/enemy_scenes/slime_5_3d.tscn" id="4_lebel"]
+[ext_resource type="Script" path="res://Scripts/map_3d.gd" id="1_jskgo"]
+[ext_resource type="PackedScene" path="res://Scenes/spawner_3d.tscn" id="2_w4tku"]
+[ext_resource type="Script" path="res://Scripts/spawner_3d.gd" id="3_68eye"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy_scenes/slime_5_3d.tscn" id="4_pfbqu"]
+[ext_resource type="PackedScene" path="res://Scenes/environment/prop_rock.tscn" id="5_c2kjk"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Environment/rock.png" id="6_ewfva"]
+[ext_resource type="PackedScene" path="res://Scenes/environment/prop_bush.tscn" id="7_oxrev"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Environment/bush.png" id="8_yd40d"]
+[ext_resource type="PackedScene" path="res://Scenes/environment/prop_grass.tscn" id="9_3m1hs"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Environment/grass.png" id="10_vudeb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n67y"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2eum4"]
 albedo_color = Color(0.48, 0.22, 0.14, 1)
 roughness = 0.85
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_uks23"]
-material = SubResource("StandardMaterial3D_0n67y")
+[sub_resource type="PlaneMesh" id="PlaneMesh_5r12m"]
+material = SubResource("StandardMaterial3D_2eum4")
 size = Vector2(42, 26)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jskgo"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vgh5d"]
 size = Vector3(42, 0.5, 26)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4tku"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru401"]
 albedo_color = Color(0.28, 0.28, 0.32, 1)
 roughness = 0.9
 
-[sub_resource type="BoxMesh" id="BoxMesh_68eye"]
-material = SubResource("StandardMaterial3D_w4tku")
+[sub_resource type="BoxMesh" id="BoxMesh_6ghgs"]
+material = SubResource("StandardMaterial3D_ru401")
 size = Vector3(44, 2, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_pfbqu"]
-material = SubResource("StandardMaterial3D_w4tku")
+[sub_resource type="BoxMesh" id="BoxMesh_e7cda"]
+material = SubResource("StandardMaterial3D_ru401")
 size = Vector3(44, 2, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_c2kjk"]
-material = SubResource("StandardMaterial3D_w4tku")
+[sub_resource type="BoxMesh" id="BoxMesh_mr6lv"]
+material = SubResource("StandardMaterial3D_ru401")
 size = Vector3(1, 2, 26)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ewfva"]
-material = SubResource("StandardMaterial3D_w4tku")
+[sub_resource type="BoxMesh" id="BoxMesh_tldta"]
+material = SubResource("StandardMaterial3D_ru401")
 size = Vector3(1, 2, 26)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxrev"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewyo1"]
 albedo_color = Color(0.25, 0.25, 0.28, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_yd40d"]
-material = SubResource("StandardMaterial3D_oxrev")
+[sub_resource type="CylinderMesh" id="CylinderMesh_juqhy"]
+material = SubResource("StandardMaterial3D_ewyo1")
 top_radius = 0.35
 bottom_radius = 0.45
 height = 1.6
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m1hs"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4axe"]
 albedo_color = Color(0.25, 0.25, 0.28, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_vudeb"]
-material = SubResource("StandardMaterial3D_3m1hs")
+[sub_resource type="CylinderMesh" id="CylinderMesh_x7ftd"]
+material = SubResource("StandardMaterial3D_t4axe")
 top_radius = 0.35
 bottom_radius = 0.45
 height = 1.6
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2eum4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ib84d"]
 albedo_color = Color(0.25, 0.25, 0.28, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_5r12m"]
-material = SubResource("StandardMaterial3D_2eum4")
+[sub_resource type="CylinderMesh" id="CylinderMesh_s3fuc"]
+material = SubResource("StandardMaterial3D_ib84d")
 top_radius = 0.35
 bottom_radius = 0.45
 height = 1.6
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vgh5d"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8gtk"]
 albedo_color = Color(0.25, 0.25, 0.28, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ru401"]
-material = SubResource("StandardMaterial3D_vgh5d")
+[sub_resource type="CylinderMesh" id="CylinderMesh_a7uoq"]
+material = SubResource("StandardMaterial3D_c8gtk")
 top_radius = 0.35
 bottom_radius = 0.45
 height = 1.6
 
-[node name="Map_021" type="Node3D" unique_id=1687984599]
-script = ExtResource("1_p5t7i")
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rock"]
+height = 0.7
+radius = 0.65
 
-[node name="FloorMesh" type="MeshInstance3D" parent="." unique_id=1409705476]
-mesh = SubResource("PlaneMesh_uks23")
+[sub_resource type="SphereShape3D" id="SphereShape3D_bush"]
+radius = 0.45
 
-[node name="FloorStaticBody" type="StaticBody3D" parent="." unique_id=1790565028]
+[node name="Map_021" type="Node3D" unique_id=1787343841]
+script = ExtResource("1_jskgo")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="." unique_id=1422650327]
+mesh = SubResource("PlaneMesh_5r12m")
+
+[node name="FloorStaticBody" type="StaticBody3D" parent="." unique_id=1437594629]
 collision_mask = 6
 
-[node name="FloorCollision" type="CollisionShape3D" parent="FloorStaticBody" unique_id=1722405765]
+[node name="FloorCollision" type="CollisionShape3D" parent="FloorStaticBody" unique_id=1787781313]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-shape = SubResource("BoxShape3D_jskgo")
+shape = SubResource("BoxShape3D_vgh5d")
 
-[node name="PerimeterWalls" type="Node3D" parent="." unique_id=233801970]
+[node name="PerimeterWalls" type="Node3D" parent="." unique_id=342099454]
 
-[node name="WallTop" type="MeshInstance3D" parent="PerimeterWalls" unique_id=1087799100]
+[node name="WallTop" type="MeshInstance3D" parent="PerimeterWalls" unique_id=955660313]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -13)
-mesh = SubResource("BoxMesh_68eye")
+mesh = SubResource("BoxMesh_6ghgs")
 
-[node name="WallBottom" type="MeshInstance3D" parent="PerimeterWalls" unique_id=1350563786]
+[node name="WallBottom" type="MeshInstance3D" parent="PerimeterWalls" unique_id=113847676]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 13)
-mesh = SubResource("BoxMesh_pfbqu")
+mesh = SubResource("BoxMesh_e7cda")
 
-[node name="WallLeft" type="MeshInstance3D" parent="PerimeterWalls" unique_id=634072391]
+[node name="WallLeft" type="MeshInstance3D" parent="PerimeterWalls" unique_id=852776244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1, 0)
-mesh = SubResource("BoxMesh_c2kjk")
+mesh = SubResource("BoxMesh_mr6lv")
 
-[node name="WallRight" type="MeshInstance3D" parent="PerimeterWalls" unique_id=1983513982]
+[node name="WallRight" type="MeshInstance3D" parent="PerimeterWalls" unique_id=2061104104]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1, 0)
-mesh = SubResource("BoxMesh_ewfva")
+mesh = SubResource("BoxMesh_tldta")
 
-[node name="Torches" type="Node3D" parent="." unique_id=115816274]
+[node name="Torches" type="Node3D" parent="." unique_id=653656943]
 
-[node name="Torch_0" type="Node3D" parent="Torches" unique_id=371733498]
+[node name="Torch_0" type="Node3D" parent="Torches" unique_id=1787356638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -11)
 
-[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_0" unique_id=1441077143]
+[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_0" unique_id=1480274420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-mesh = SubResource("CylinderMesh_yd40d")
+mesh = SubResource("CylinderMesh_juqhy")
 
-[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_0" unique_id=358703800]
+[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_0" unique_id=1701251136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 light_color = Color(1, 0.4, 0.2, 1)
 light_energy = 1.4
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="Torch_1" type="Node3D" parent="Torches" unique_id=597571515]
+[node name="Torch_1" type="Node3D" parent="Torches" unique_id=671956666]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -11)
 
-[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_1" unique_id=908166178]
+[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_1" unique_id=453686869]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-mesh = SubResource("CylinderMesh_vudeb")
+mesh = SubResource("CylinderMesh_x7ftd")
 
-[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_1" unique_id=1222698245]
+[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_1" unique_id=1789788183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 light_color = Color(1, 0.4, 0.2, 1)
 light_energy = 1.4
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="Torch_2" type="Node3D" parent="Torches" unique_id=545795291]
+[node name="Torch_2" type="Node3D" parent="Torches" unique_id=577985147]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 11)
 
-[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_2" unique_id=1240467693]
+[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_2" unique_id=485176070]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-mesh = SubResource("CylinderMesh_5r12m")
+mesh = SubResource("CylinderMesh_s3fuc")
 
-[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_2" unique_id=107384119]
+[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_2" unique_id=1172993330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 light_color = Color(1, 0.4, 0.2, 1)
 light_energy = 1.4
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="Torch_3" type="Node3D" parent="Torches" unique_id=1868432521]
+[node name="Torch_3" type="Node3D" parent="Torches" unique_id=1008835672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 11)
 
-[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_3" unique_id=573936210]
+[node name="PillarMesh" type="MeshInstance3D" parent="Torches/Torch_3" unique_id=490447749]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-mesh = SubResource("CylinderMesh_ru401")
+mesh = SubResource("CylinderMesh_a7uoq")
 
-[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_3" unique_id=1900201195]
+[node name="TorchLight" type="OmniLight3D" parent="Torches/Torch_3" unique_id=69226735]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 light_color = Color(1, 0.4, 0.2, 1)
 light_energy = 1.4
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="SpawnPoints" type="Node3D" parent="." unique_id=1515120012]
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=1772237632]
 
-[node name="CenterSpawn" type="Marker3D" parent="SpawnPoints" unique_id=1479890351]
+[node name="CenterSpawn" type="Marker3D" parent="SpawnPoints" unique_id=588791235]
 
-[node name="EnterTop" type="Marker3D" parent="SpawnPoints" unique_id=173557562]
+[node name="EnterTop" type="Marker3D" parent="SpawnPoints" unique_id=1588456837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
 
-[node name="EnterBottom" type="Marker3D" parent="SpawnPoints" unique_id=1192941854]
+[node name="EnterBottom" type="Marker3D" parent="SpawnPoints" unique_id=250305640]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
 
-[node name="EnterLeft" type="Marker3D" parent="SpawnPoints" unique_id=803882458]
+[node name="EnterLeft" type="Marker3D" parent="SpawnPoints" unique_id=206727436]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
 
-[node name="EnterRight" type="Marker3D" parent="SpawnPoints" unique_id=1044991886]
+[node name="EnterRight" type="Marker3D" parent="SpawnPoints" unique_id=1991137298]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
 
-[node name="Spawners" type="Node3D" parent="." unique_id=508408529]
+[node name="Spawners" type="Node3D" parent="." unique_id=1188159515]
 
-[node name="SpawnerA" type="Node3D" parent="Spawners" unique_id=1364388237 instance=ExtResource("2_ie5y7")]
+[node name="SpawnerA" type="Node3D" parent="Spawners" unique_id=882539801 instance=ExtResource("2_w4tku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 4)
-script = ExtResource("3_j65bc")
-monster_scene = ExtResource("4_lebel")
+script = ExtResource("3_68eye")
+monster_scene = ExtResource("4_pfbqu")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerA" unique_id=1008986446]
-_spawnable_scenes = PackedStringArray("res://Scenes/enemy_scenes/slime_1_3d.tscn", "res://Scenes/enemy_scenes/slime_2_3d.tscn", "res://Scenes/enemy_scenes/slime_3_3d.tscn", "res://Scenes/enemy_scenes/slime_4_3d.tscn", "res://Scenes/enemy_scenes/slime_5_3d.tscn", "res://Scenes/enemy_scenes/boss_3d.tscn")
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerA" unique_id=578424879]
+_spawnable_scenes = PackedStringArray("uid://c5q3yan1e4b8r", "uid://c6q3yan1e4b8s", "uid://c7q3yan1e4b8t", "uid://c8q3yan1e4b8u", "uid://daq3yan1e4b8v", "uid://cb5ss8n1e4caw")
 spawn_path = NodePath("..")
 
-[node name="SpawnerB" type="Node3D" parent="Spawners" unique_id=405560905 instance=ExtResource("2_ie5y7")]
+[node name="SpawnerB" type="Node3D" parent="Spawners" unique_id=735885112 instance=ExtResource("2_w4tku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
-script = ExtResource("3_j65bc")
-monster_scene = ExtResource("4_lebel")
+script = ExtResource("3_68eye")
+monster_scene = ExtResource("4_pfbqu")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerB" unique_id=1313906451]
-_spawnable_scenes = PackedStringArray("res://Scenes/enemy_scenes/slime_1_3d.tscn", "res://Scenes/enemy_scenes/slime_2_3d.tscn", "res://Scenes/enemy_scenes/slime_3_3d.tscn", "res://Scenes/enemy_scenes/slime_4_3d.tscn", "res://Scenes/enemy_scenes/slime_5_3d.tscn", "res://Scenes/enemy_scenes/boss_3d.tscn")
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerB" unique_id=432170700]
+_spawnable_scenes = PackedStringArray("uid://c5q3yan1e4b8r", "uid://c6q3yan1e4b8s", "uid://c7q3yan1e4b8t", "uid://c8q3yan1e4b8u", "uid://daq3yan1e4b8v", "uid://cb5ss8n1e4caw")
 spawn_path = NodePath("..")
 
-[node name="SpawnerC" type="Node3D" parent="Spawners" unique_id=1174732026 instance=ExtResource("2_ie5y7")]
+[node name="SpawnerC" type="Node3D" parent="Spawners" unique_id=1014362759 instance=ExtResource("2_w4tku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 4)
-script = ExtResource("3_j65bc")
-monster_scene = ExtResource("4_lebel")
+script = ExtResource("3_68eye")
+monster_scene = ExtResource("4_pfbqu")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerC" unique_id=720390969]
-_spawnable_scenes = PackedStringArray("res://Scenes/enemy_scenes/slime_1_3d.tscn", "res://Scenes/enemy_scenes/slime_2_3d.tscn", "res://Scenes/enemy_scenes/slime_3_3d.tscn", "res://Scenes/enemy_scenes/slime_4_3d.tscn", "res://Scenes/enemy_scenes/slime_5_3d.tscn", "res://Scenes/enemy_scenes/boss_3d.tscn")
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners/SpawnerC" unique_id=1813049527]
+_spawnable_scenes = PackedStringArray("uid://c5q3yan1e4b8r", "uid://c6q3yan1e4b8s", "uid://c7q3yan1e4b8t", "uid://c8q3yan1e4b8u", "uid://daq3yan1e4b8v", "uid://cb5ss8n1e4caw")
 spawn_path = NodePath("..")
+
+[node name="EnvironmentProps" type="Node3D" parent="." unique_id=196006480]
+
+[node name="Rock_0" type="StaticBody3D" parent="EnvironmentProps" unique_id=1008195499 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.0778923, 0, 0, 0, 1.0778923, 0, 0, 0, 1.0778923, -7.710759, 0, 1.3439503)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_0" unique_id=163414633]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.1991448, 0.76309216, 0.70858556, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_0" unique_id=975120295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_1" type="StaticBody3D" parent="EnvironmentProps" unique_id=1831167580 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.75413126, 0, 0, 0, 0.75413126, 0, 0, 0, 0.75413126, 6.9194355, 0, 0.108662605)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_1" unique_id=549028364]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.0267535, 0.65338856, 0.60671794, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_1" unique_id=484698038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_2" type="StaticBody3D" parent="EnvironmentProps" unique_id=158535978 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.84163356, 0, 0, 0, 0.84163356, 0, 0, 0, 0.84163356, 10.631443, 0, -6.8784676)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_2" unique_id=150103792]
+offset = Vector2(0, 8)
+modulate = Color(1.0508904, 0.66874844, 0.6209807, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_2" unique_id=1927291243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_3" type="StaticBody3D" parent="EnvironmentProps" unique_id=589883151 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.1553316, 0, 0, 0, 1.1553316, 0, 0, 0, 1.1553316, -8.560994, 0, -8.768335)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_3" unique_id=1544476912]
+offset = Vector2(0, 8)
+modulate = Color(1.1972064, 0.7618585, 0.7074401, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_3" unique_id=1022747339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_4" type="StaticBody3D" parent="EnvironmentProps" unique_id=1909011601 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.84975165, 0, 0, 0, 0.84975165, 0, 0, 0, 0.84975165, -8.025914, 0, 8.638185)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_4" unique_id=1912639357]
+offset = Vector2(0, 8)
+modulate = Color(1.1924019, 0.75880116, 0.70460105, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_4" unique_id=1225292522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_5" type="StaticBody3D" parent="EnvironmentProps" unique_id=1917429228 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.8528961, 0, 0, 0, 0.8528961, 0, 0, 0, 0.8528961, 1.3749218, 0, -3.1438527)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_5" unique_id=1130716857]
+offset = Vector2(0, 8)
+modulate = Color(1.130856, 0.7196356, 0.66823304, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_5" unique_id=717925990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_6" type="StaticBody3D" parent="EnvironmentProps" unique_id=1348641933 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.7540312, 0, 0, 0, 0.7540312, 0, 0, 0, 0.7540312, 9.592197, 0, -2.2736273)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_6" unique_id=1256280414]
+offset = Vector2(0, 8)
+modulate = Color(1.0721295, 0.6822642, 0.63353103, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_6" unique_id=1733371344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_7" type="StaticBody3D" parent="EnvironmentProps" unique_id=83351726 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.2933996, 0, 0, 0, 1.2933996, 0, 0, 0, 1.2933996, 13.486906, 0, 5.786557)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_7" unique_id=678420920]
+offset = Vector2(0, 8)
+modulate = Color(1.1404587, 0.7257464, 0.67390734, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_7" unique_id=1165372720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_8" type="StaticBody3D" parent="EnvironmentProps" unique_id=402001311 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.0317189, 0, 0, 0, 1.0317189, 0, 0, 0, 1.0317189, 2.7029762, 0, -7.1627274)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_8" unique_id=636037434]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.091481, 0.69457877, 0.644966, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_8" unique_id=487632693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_9" type="StaticBody3D" parent="EnvironmentProps" unique_id=462841399 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.9697865, 0, 0, 0, 0.9697865, 0, 0, 0, 0.9697865, 6.692501, 0, 4.814439)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_9" unique_id=4327106]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(0.99984765, 0.6362667, 0.59081906, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_9" unique_id=712610631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_10" type="StaticBody3D" parent="EnvironmentProps" unique_id=425945179 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.1815585, 0, 0, 0, 1.1815585, 0, 0, 0, 1.1815585, -11.131954, 0, 8.568593)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_10" unique_id=195679371]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.1230195, 0.71464866, 0.66360235, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_10" unique_id=796490377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_11" type="StaticBody3D" parent="EnvironmentProps" unique_id=192660567 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.1841271, 0, 0, 0, 1.1841271, 0, 0, 0, 1.1841271, 18.255901, 0, 4.30573)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_11" unique_id=1294815624]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.102325, 0.7014795, 0.6513738, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_11" unique_id=1340428076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_12" type="StaticBody3D" parent="EnvironmentProps" unique_id=43116240 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.3489186, 0, 0, 0, 1.3489186, 0, 0, 0, 1.3489186, 16.213902, 0, 7.6961603)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_12" unique_id=511750162]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.1182425, 0.7116088, 0.6607796, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_12" unique_id=317452763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_13" type="StaticBody3D" parent="EnvironmentProps" unique_id=1893099481 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.94545037, 0, 0, 0, 0.94545037, 0, 0, 0, 0.94545037, 8.280489, 0, 8.478383)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_13" unique_id=455685766]
+offset = Vector2(0, 8)
+modulate = Color(1.0783207, 0.68620414, 0.6371895, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_13" unique_id=478656917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_14" type="StaticBody3D" parent="EnvironmentProps" unique_id=689767348 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.3340123, 0, 0, 0, 1.3340123, 0, 0, 0, 1.3340123, -17.341301, 0, 6.5279417)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_14" unique_id=1857504349]
+offset = Vector2(0, 8)
+modulate = Color(1.0150809, 0.64596057, 0.5998205, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_14" unique_id=962273966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_15" type="StaticBody3D" parent="EnvironmentProps" unique_id=817465879 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.94481033, 0, 0, 0, 0.94481033, 0, 0, 0, 0.94481033, 6.52417, 0, -4.547192)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_15" unique_id=1553924193]
+offset = Vector2(0, 8)
+modulate = Color(1.1741022, 0.74715596, 0.69378763, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_15" unique_id=908077843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_16" type="StaticBody3D" parent="EnvironmentProps" unique_id=339197164 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.8614721, 0, 0, 0, 0.8614721, 0, 0, 0, 0.8614721, 4.1429214, 0, 3.7171593)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_16" unique_id=1759432887]
+offset = Vector2(0, 8)
+modulate = Color(1.0491996, 0.66767246, 0.6199815, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_16" unique_id=1041675030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_17" type="StaticBody3D" parent="EnvironmentProps" unique_id=454040778 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.9210926, 0, 0, 0, 0.9210926, 0, 0, 0, 0.9210926, 6.6242733, 0, 2.5904503)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_17" unique_id=756604868]
+offset = Vector2(0, 8)
+modulate = Color(1.2036513, 0.76595986, 0.7112484, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_17" unique_id=1838351480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_18" type="StaticBody3D" parent="EnvironmentProps" unique_id=537571957 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.2327278, 0, 0, 0, 1.2327278, 0, 0, 0, 1.2327278, 12.343151, 0, -4.7759953)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_18" unique_id=357577866]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.0628372, 0.67635095, 0.62804013, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_18" unique_id=1024722101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_19" type="StaticBody3D" parent="EnvironmentProps" unique_id=1418152339 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.0847735, 0, 0, 0, 1.0847735, 0, 0, 0, 1.0847735, -12.878528, 0, -10.612602)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_19" unique_id=172544418]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.0370415, 0.6599355, 0.6127972, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_19" unique_id=2062258183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_20" type="StaticBody3D" parent="EnvironmentProps" unique_id=2009299359 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.8721485, 0, 0, 0, 0.8721485, 0, 0, 0, 0.8721485, -15.490219, 0, -3.0887132)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_20" unique_id=678483856]
+offset = Vector2(0, 8)
+modulate = Color(1.1189097, 0.7120334, 0.6611738, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_20" unique_id=272096319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_21" type="StaticBody3D" parent="EnvironmentProps" unique_id=1830284025 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.3097377, 0, 0, 0, 1.3097377, 0, 0, 0, 1.3097377, -3.043068, 0, 9.836957)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_21" unique_id=1872217199]
+offset = Vector2(0, 8)
+modulate = Color(1.092012, 0.6949168, 0.6452798, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_21" unique_id=151603321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_22" type="StaticBody3D" parent="EnvironmentProps" unique_id=1329853270 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.0211211, 0, 0, 0, 1.0211211, 0, 0, 0, 1.0211211, 6.7408447, 0, -9.367371)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_22" unique_id=740341253]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.1252147, 0.7160457, 0.6648995, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_22" unique_id=1560878325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_23" type="StaticBody3D" parent="EnvironmentProps" unique_id=687522232 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.86941576, 0, 0, 0, 0.86941576, 0, 0, 0, 0.86941576, -2.3185272, 0, 3.5594006)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_23" unique_id=351417818]
+offset = Vector2(0, 8)
+modulate = Color(1.138339, 0.7243976, 0.67265487, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_23" unique_id=1878063024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_24" type="StaticBody3D" parent="EnvironmentProps" unique_id=1840510770 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.240517, 0, 0, 0, 1.240517, 0, 0, 0, 1.240517, -3.39254, 0, 7.4570093)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_24" unique_id=2108354755]
+offset = Vector2(0, 8)
+modulate = Color(1.1411123, 0.7261624, 0.67429364, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_24" unique_id=261272066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_25" type="StaticBody3D" parent="EnvironmentProps" unique_id=963506509 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.2928991, 0, 0, 0, 1.2928991, 0, 0, 0, 1.2928991, -9.162613, 0, -0.68746567)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_25" unique_id=1972784957]
+offset = Vector2(0, 8)
+modulate = Color(1.203954, 0.76615256, 0.71142733, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_25" unique_id=487769370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_26" type="StaticBody3D" parent="EnvironmentProps" unique_id=97500843 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(1.2480164, 0, 0, 0, 1.2480164, 0, 0, 0, 1.2480164, 16.464108, 0, 5.492158)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_26" unique_id=621275600]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.1314307, 0.72000134, 0.66857266, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_26" unique_id=1154794917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Rock_27" type="StaticBody3D" parent="EnvironmentProps" unique_id=1275775146 groups=["environment_props", "rocks"] instance=ExtResource("5_c2kjk")]
+transform = Transform3D(0.93838644, 0, 0, 0, 0.93838644, 0, 0, 0, 0.93838644, 15.218857, 0, 9.910523)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Rock_27" unique_id=2042021659]
+offset = Vector2(0, 8)
+modulate = Color(1.0159546, 0.64651656, 0.6003368, 1)
+pixel_size = 0.055
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ewfva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Rock_27" unique_id=331225506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CylinderShape3D_rock")
+
+[node name="Bush_0" type="StaticBody3D" parent="EnvironmentProps" unique_id=386392568 groups=["bushes", "environment_props"] instance=ExtResource("7_oxrev")]
+transform = Transform3D(0.763363, 0, 0, 0, 0.763363, 0, 0, 0, 0.763363, 6.699954, 0, -2.5499992)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Bush_0" unique_id=748677748]
+offset = Vector2(0, 16)
+modulate = Color(1.1565491, 0.7359858, 0.68341535, 1)
+pixel_size = 0.045
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("8_yd40d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Bush_0" unique_id=1438615448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("SphereShape3D_bush")
+
+[node name="Bush_1" type="StaticBody3D" parent="EnvironmentProps" unique_id=119304759 groups=["bushes", "environment_props"] instance=ExtResource("7_oxrev")]
+transform = Transform3D(1.0718311, 0, 0, 0, 1.0718311, 0, 0, 0, 1.0718311, -9.927491, 0, -7.5518236)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Bush_1" unique_id=1114424870]
+offset = Vector2(0, 16)
+flip_h = true
+modulate = Color(1.0511006, 0.6688822, 0.62110484, 1)
+pixel_size = 0.045
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("8_yd40d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Bush_1" unique_id=1601765722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("SphereShape3D_bush")
+
+[node name="Bush_2" type="StaticBody3D" parent="EnvironmentProps" unique_id=952801283 groups=["bushes", "environment_props"] instance=ExtResource("7_oxrev")]
+transform = Transform3D(0.8752699, 0, 0, 0, 0.8752699, 0, 0, 0, 0.8752699, 13.826501, 0, -3.6562886)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Bush_2" unique_id=1031301215]
+offset = Vector2(0, 16)
+flip_h = true
+modulate = Color(1.110851, 0.7069052, 0.65641195, 1)
+pixel_size = 0.045
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("8_yd40d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Bush_2" unique_id=1108598501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("SphereShape3D_bush")
+
+[node name="Bush_3" type="StaticBody3D" parent="EnvironmentProps" unique_id=528761296 groups=["bushes", "environment_props"] instance=ExtResource("7_oxrev")]
+transform = Transform3D(1.1423355, 0, 0, 0, 1.1423355, 0, 0, 0, 1.1423355, -18.25964, 0, -7.6073723)
+collision_mask = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Bush_3" unique_id=902454706]
+offset = Vector2(0, 16)
+modulate = Color(1.0275339, 0.6538852, 0.60717905, 1)
+pixel_size = 0.045
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("8_yd40d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentProps/Bush_3" unique_id=864990324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("SphereShape3D_bush")
+
+[node name="Grass_0" type="Node3D" parent="EnvironmentProps" unique_id=1910491501 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(0.7509905, 0, 0, 0, 0.7509905, 0, 0, 0, 0.7509905, 13.145348, 0, 6.120388)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_0" unique_id=1119850363]
+offset = Vector2(0, 8)
+modulate = Color(1.0803239, 0.68747884, 0.6383732, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_1" type="Node3D" parent="EnvironmentProps" unique_id=1266585584 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(1.053439, 0, 0, 0, 1.053439, 0, 0, 0, 1.053439, 15.454075, 0, -4.0811524)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_1" unique_id=870967159]
+offset = Vector2(0, 8)
+modulate = Color(1.0099598, 0.6427017, 0.5967944, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_2" type="Node3D" parent="EnvironmentProps" unique_id=1660003565 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(0.99185455, 0, 0, 0, 0.99185455, 0, 0, 0, 0.99185455, -6.237959, 0, -8.837618)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_2" unique_id=802510496]
+offset = Vector2(0, 8)
+modulate = Color(1.1849283, 0.7540453, 0.7001849, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_3" type="Node3D" parent="EnvironmentProps" unique_id=1110300849 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(1.2473391, 0, 0, 0, 1.2473391, 0, 0, 0, 1.2473391, 15.865967, 0, -10.796832)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_3" unique_id=1390531465]
+offset = Vector2(0, 8)
+modulate = Color(1.1317064, 0.72017676, 0.66873556, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_4" type="Node3D" parent="EnvironmentProps" unique_id=656104182 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(1.1068618, 0, 0, 0, 1.1068618, 0, 0, 0, 1.1068618, -2.8423557, 0, -1.7270756)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_4" unique_id=1656911396]
+offset = Vector2(0, 8)
+modulate = Color(1.0263001, 0.6531, 0.60645, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_5" type="Node3D" parent="EnvironmentProps" unique_id=244137088 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(1.0888865, 0, 0, 0, 1.0888865, 0, 0, 0, 1.0888865, 2.6996155, 0, 4.2694826)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_5" unique_id=131741232]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.1798775, 0.75083107, 0.6972003, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_6" type="Node3D" parent="EnvironmentProps" unique_id=1232802016 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(1.0049542, 0, 0, 0, 1.0049542, 0, 0, 0, 1.0049542, 14.757767, 0, -11.320524)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_6" unique_id=1158330225]
+offset = Vector2(0, 8)
+modulate = Color(1.1521391, 0.7331794, 0.68080944, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_7" type="Node3D" parent="EnvironmentProps" unique_id=525465234 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(0.8983265, 0, 0, 0, 0.8983265, 0, 0, 0, 0.8983265, 16.598312, 0, -7.956152)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_7" unique_id=782458958]
+offset = Vector2(0, 8)
+modulate = Color(1.0310389, 0.65611565, 0.60925025, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_8" type="Node3D" parent="EnvironmentProps" unique_id=893502912 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(1.1204765, 0, 0, 0, 1.1204765, 0, 0, 0, 1.1204765, 5.159706, 0, -1.2835417)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_8" unique_id=1810774633]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.0328686, 0.65728, 0.6103314, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_9" type="Node3D" parent="EnvironmentProps" unique_id=1059442052 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(0.98052055, 0, 0, 0, 0.98052055, 0, 0, 0, 0.98052055, 3.432169, 0, 0.6335592)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_9" unique_id=749251756]
+offset = Vector2(0, 8)
+modulate = Color(1.1706957, 0.7449881, 0.6917746, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_10" type="Node3D" parent="EnvironmentProps" unique_id=359817099 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(0.7533579, 0, 0, 0, 0.7533579, 0, 0, 0, 0.7533579, 14.638149, 0, 0.53415585)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_10" unique_id=241975799]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.1855317, 0.7544292, 0.7005414, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")
+
+[node name="Grass_11" type="Node3D" parent="EnvironmentProps" unique_id=514123813 groups=["environment_props", "grass"] instance=ExtResource("9_3m1hs")]
+transform = Transform3D(1.1611705, 0, 0, 0, 1.1611705, 0, 0, 0, 1.1611705, -12.979887, 0, 5.9123707)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnvironmentProps/Grass_11" unique_id=1196208691]
+offset = Vector2(0, 8)
+flip_h = true
+modulate = Color(1.2017868, 0.7647733, 0.71014667, 1)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("10_vudeb")

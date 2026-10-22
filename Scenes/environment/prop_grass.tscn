@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Environment/grass.png" id="1_grass"]
+
+[node name="PropGrass" type="Node3D" groups=["environment_props", "grass"]]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(0, 8)
+pixel_size = 0.038
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("1_grass")

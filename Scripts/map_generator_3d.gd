@@ -1,5 +1,5 @@
 # Map Generator 3D (2.5D / HD-2D)
-# Generates all 26 3D arena map scenes into Scenes/maps_3d/
+# Generates all 26 3D arena map scenes into Scenes/maps_3d/ with environmental props
 extends SceneTree
 
 const MapDataScript := preload("res://Scripts/map_data.gd")
@@ -12,6 +12,11 @@ const SLIME_3_SCENE := preload("res://Scenes/enemy_scenes/slime_3_3d.tscn")
 const SLIME_4_SCENE := preload("res://Scenes/enemy_scenes/slime_4_3d.tscn")
 const SLIME_5_SCENE := preload("res://Scenes/enemy_scenes/slime_5_3d.tscn")
 const BOSS_SCENE    := preload("res://Scenes/enemy_scenes/boss_3d.tscn")
+
+const PROP_TREE_SCENE  := preload("res://Scenes/environment/prop_tree.tscn")
+const PROP_ROCK_SCENE  := preload("res://Scenes/environment/prop_rock.tscn")
+const PROP_BUSH_SCENE  := preload("res://Scenes/environment/prop_bush.tscn")
+const PROP_GRASS_SCENE := preload("res://Scenes/environment/prop_grass.tscn")
 
 const OUT_DIR := "res://Scenes/maps_3d"
 
@@ -33,6 +38,37 @@ const BIOME_TORCH_COLORS: Dictionary = {
 	5: Color(1.0, 0.4, 0.2),
 	6: Color(1.0, 0.25, 0.25),
 	7: Color(1.0, 0.85, 0.5)
+}
+
+const BIOME_PROP_CONFIG: Dictionary = {
+	1: { # Grassland
+		"trees": 14, "bushes": 16, "rocks": 6, "grass": 32,
+		"tint": Color(1.0, 1.0, 1.0)
+	},
+	2: { # Golden Meadow
+		"trees": 10, "bushes": 14, "rocks": 8, "grass": 38,
+		"tint": Color(1.05, 0.95, 0.82)
+	},
+	3: { # Azure Cavern
+		"trees": 0, "bushes": 8, "rocks": 24, "grass": 16,
+		"tint": Color(0.72, 0.90, 1.18)
+	},
+	4: { # Cursed Grove
+		"trees": 18, "bushes": 12, "rocks": 10, "grass": 22,
+		"tint": Color(0.85, 0.72, 0.98)
+	},
+	5: { # Volcanic Ground
+		"trees": 0, "bushes": 4, "rocks": 28, "grass": 12,
+		"tint": Color(1.10, 0.70, 0.65)
+	},
+	6: { # Obsidian Arena (Boss)
+		"trees": 0, "bushes": 2, "rocks": 18, "grass": 10,
+		"tint": Color(0.70, 0.65, 0.78)
+	},
+	7: { # Starter Camp
+		"trees": 12, "bushes": 14, "rocks": 6, "grass": 28,
+		"tint": Color(1.0, 1.0, 1.0)
+	}
 }
 
 
@@ -168,7 +204,13 @@ func _generate_3d_map(map_id: String, data: Dictionary) -> void:
 			spawner.max_alive = 2
 			spawners.add_child(spawner)
 
-	# 6. Set owners and save PackedScene
+	# 6. Environmental Props (Trees, Rocks, Bushes, Grass)
+	var props_node := Node3D.new()
+	props_node.name = "EnvironmentProps"
+	root.add_child(props_node)
+	_populate_environment_props(props_node, map_id, biome, half_w, half_h)
+
+	# 7. Set owners and save PackedScene
 	_set_owners(root, root)
 
 	var packed := PackedScene.new()
@@ -177,6 +219,157 @@ func _generate_3d_map(map_id: String, data: Dictionary) -> void:
 	var err := ResourceSaver.save(packed, path)
 	if err != OK:
 		push_error("MapGenerator3D: failed to save %s (error %d)" % [path, err])
+	root.free()
+
+
+func _populate_environment_props(props_node: Node3D, map_id: String, biome: int, half_w: float, half_h: float) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(map_id) + 12345
+
+	var config: Dictionary = BIOME_PROP_CONFIG.get(biome, BIOME_PROP_CONFIG[1])
+	var base_tint: Color = config.get("tint", Color.WHITE)
+
+	# Reserved zones (spawn points, spawners, torches)
+	var reserved_points: Array[Vector3] = [
+		Vector3(0.0, 0.0, 0.0),    # CenterSpawn
+		Vector3(0.0, 0.0, -9.0),   # EnterTop
+		Vector3(0.0, 0.0, 9.0),    # EnterBottom
+		Vector3(-16.0, 0.0, 0.0),  # EnterLeft
+		Vector3(16.0, 0.0, 0.0),   # EnterRight
+		Vector3(-half_w + 2.0, 0.0, -half_h + 2.0), # Torches
+		Vector3(half_w - 2.0, 0.0, -half_h + 2.0),
+		Vector3(-half_w + 2.0, 0.0, half_h - 2.0),
+		Vector3(half_w - 2.0, 0.0, half_h - 2.0)
+	]
+
+	var is_boss_map: bool = (map_id == "026" or biome == 6)
+	if not is_boss_map:
+		reserved_points.append(Vector3(-11.0, 0.0, 4.0)) # SpawnerA
+		reserved_points.append(Vector3(0.0, 0.0, -7.0))  # SpawnerB
+		reserved_points.append(Vector3(11.0, 0.0, 4.0))  # SpawnerC
+
+	var placed_solid_positions: Array[Vector3] = []
+
+	var min_x := -half_w + 2.5
+	var max_x := half_w - 2.5
+	var min_z := -half_h + 2.2
+	var max_z := half_h - 2.2
+
+	var is_valid_solid_pos = func(pos: Vector3, min_dist: float) -> bool:
+		for r in reserved_points:
+			var req_dist: float = 6.5 if (is_boss_map and r == Vector3.ZERO) else 2.5
+			if pos.distance_to(r) < req_dist:
+				return false
+		for p in placed_solid_positions:
+			if pos.distance_to(p) < min_dist:
+				return false
+		return true
+
+	# 1. Place Trees
+	var tree_count: int = config.get("trees", 0)
+	for i in range(tree_count):
+		for attempt in range(50):
+			var x: float
+			var z: float
+			# 60% bias towards perimeter
+			if rng.randf() < 0.6:
+				if rng.randf() < 0.5:
+					x = rng.randf_range(min_x, max_x)
+					z = rng.randf_range(max_z - 3.0, max_z) if rng.randf() < 0.5 else rng.randf_range(min_z, min_z + 3.0)
+				else:
+					x = rng.randf_range(max_x - 4.5, max_x) if rng.randf() < 0.5 else rng.randf_range(min_x, min_x + 4.5)
+					z = rng.randf_range(min_z, max_z)
+			else:
+				x = rng.randf_range(min_x, max_x)
+				z = rng.randf_range(min_z, max_z)
+
+			var pos := Vector3(x, 0.0, z)
+			if is_valid_solid_pos.call(pos, 2.2):
+				var tree = PROP_TREE_SCENE.instantiate()
+				tree.name = "Tree_%d" % i
+				tree.position = pos
+				var s: float = rng.randf_range(0.85, 1.2)
+				tree.scale = Vector3(s, s, s)
+				var spr: Sprite3D = tree.get_node_or_null("Sprite3D")
+				if spr:
+					spr.flip_h = rng.randf() > 0.5
+					var tint_var := rng.randf_range(0.92, 1.08)
+					spr.modulate = Color(base_tint.r * tint_var, base_tint.g * tint_var, base_tint.b * tint_var)
+				props_node.add_child(tree)
+				placed_solid_positions.append(pos)
+				break
+
+	# 2. Place Rocks
+	var rock_count: int = config.get("rocks", 0)
+	for i in range(rock_count):
+		for attempt in range(50):
+			var x := rng.randf_range(min_x, max_x)
+			var z := rng.randf_range(min_z, max_z)
+			var pos := Vector3(x, 0.0, z)
+			if is_valid_solid_pos.call(pos, 1.8):
+				var rock = PROP_ROCK_SCENE.instantiate()
+				rock.name = "Rock_%d" % i
+				rock.position = pos
+				var s: float = rng.randf_range(0.70, 1.35)
+				rock.scale = Vector3(s, s, s)
+				var spr: Sprite3D = rock.get_node_or_null("Sprite3D")
+				if spr:
+					spr.flip_h = rng.randf() > 0.5
+					var tint_var := rng.randf_range(0.90, 1.10)
+					spr.modulate = Color(base_tint.r * tint_var, base_tint.g * tint_var, base_tint.b * tint_var)
+				props_node.add_child(rock)
+				placed_solid_positions.append(pos)
+				break
+
+	# 3. Place Bushes
+	var bush_count: int = config.get("bushes", 0)
+	for i in range(bush_count):
+		for attempt in range(50):
+			var x: float
+			var z: float
+			if placed_solid_positions.size() > 0 and rng.randf() < 0.4:
+				var target_pos: Vector3 = placed_solid_positions[rng.randi() % placed_solid_positions.size()]
+				var angle := rng.randf() * TAU
+				var dist := rng.randf_range(1.5, 2.3)
+				x = clampf(target_pos.x + cos(angle) * dist, min_x, max_x)
+				z = clampf(target_pos.z + sin(angle) * dist, min_z, max_z)
+			else:
+				x = rng.randf_range(min_x, max_x)
+				z = rng.randf_range(min_z, max_z)
+
+			var pos := Vector3(x, 0.0, z)
+			if is_valid_solid_pos.call(pos, 1.5):
+				var bush = PROP_BUSH_SCENE.instantiate()
+				bush.name = "Bush_%d" % i
+				bush.position = pos
+				var s: float = rng.randf_range(0.75, 1.25)
+				bush.scale = Vector3(s, s, s)
+				var spr: Sprite3D = bush.get_node_or_null("Sprite3D")
+				if spr:
+					spr.flip_h = rng.randf() > 0.5
+					var tint_var := rng.randf_range(0.92, 1.08)
+					spr.modulate = Color(base_tint.r * tint_var, base_tint.g * tint_var, base_tint.b * tint_var)
+				props_node.add_child(bush)
+				placed_solid_positions.append(pos)
+				break
+
+	# 4. Place Grass (No collision - decorative scatter)
+	var grass_count: int = config.get("grass", 0)
+	for i in range(grass_count):
+		var x := rng.randf_range(-half_w + 1.5, half_w - 1.5)
+		var z := rng.randf_range(-half_h + 1.5, half_h - 1.5)
+		var pos := Vector3(x, 0.0, z)
+		var grass = PROP_GRASS_SCENE.instantiate()
+		grass.name = "Grass_%d" % i
+		grass.position = pos
+		var s: float = rng.randf_range(0.75, 1.30)
+		grass.scale = Vector3(s, s, s)
+		var spr: Sprite3D = grass.get_node_or_null("Sprite3D")
+		if spr:
+			spr.flip_h = rng.randf() > 0.5
+			var tint_var := rng.randf_range(0.90, 1.10)
+			spr.modulate = Color(base_tint.r * tint_var, base_tint.g * tint_var, base_tint.b * tint_var)
+		props_node.add_child(grass)
 
 
 func _add_wall_mesh(parent: Node, node_name: String, pos: Vector3, size: Vector3, mat: Material) -> void:
